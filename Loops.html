@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Loops Example</title>
+  </head>
+  <body>
+    <h2>Open the console to see the loop output</h2>
+
+    <script>
+      // 1. For Loop
+      console.log("For Loop Example:");
+      for (let i = 0; i < 5; i++) {
+        console.log(i); // Prints 0 to 4
+      }
+
+      // 2. While Loop
+      console.log("While Loop Example:");
+      let j = 0;
+      while (j < 5) {
+        console.log(j); // Prints 0 to 4
+        j++;
+      }
+
+      // 3. Do While Loop
+      console.log("Do While Loop Example:");
+      let k = 0;
+      do {
+        console.log(k); // Prints 0 to 4
+        k++;
+      } while (k < 5);
+
+      // 4. Breaking out of a Loop (Example using `break`)
+      console.log("Breaking out of a loop:");
+      for (let i = 0; i < 10; i++) {
+        if (i === 5) {
+          console.log("Breaking out at i = " + i);
+          break; // Exits the loop when i is 5
+        }
+        console.log(i); // Prints 0 to 4 and then breaks
+      }
+
+      // 5. Skipping an iteration in a loop (Example using `continue`)
+      console.log("Skipping an iteration (continue):");
+      for (let i = 0; i < 10; i++) {
+        if (i === 5) {
+          console.log("Skipping i = " + i);
+          continue; // Skips the rest of the loop when i is 5
+        }
+        console.log(i); // Prints 0 to 4 and then skips 5, continues from 6
+      }
+    </script>
+  </body>
+</html>
