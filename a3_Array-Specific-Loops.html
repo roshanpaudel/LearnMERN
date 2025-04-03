@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Specific Loops and Methods</title>
+</head>
+<body>
+    <h2>JavaScript Array Loops and Methods Example</h2>
+
+    <script>
+        // 1. For...Of Loop
+        console.log("For...Of Loop:");
+        const numbers = [1, 2, 3, 4, 5];
+        for (const number of numbers) {
+            console.log(number); // Prints each value: 1, 2, 3, 4, 5
+        }
+
+        // 2. forEach()
+        console.log("forEach() Method:");
+        numbers.forEach((number) => {
+            console.log(number); // Prints each value: 1, 2, 3, 4, 5
+        });
+
+        // 3. map() Method
+        console.log("map() Method:");
+        // map() transforms each value in the array and returns a new array
+        const doubledNumbers = numbers.map((number) => number * 2);
+        console.log("Original Numbers:", numbers); // Prints: [1, 2, 3, 4, 5]
+        console.log("Doubled Numbers (map):", doubledNumbers); // Prints: [2, 4, 6, 8, 10]
+
+        // 4. filter() Method
+        console.log("filter() Method:");
+        // filter() creates a new array with only the numbers that pass the test (condition)
+        const evenNumbers = numbers.filter((number) => number % 2 === 0);
+        console.log("Original Numbers:", numbers); // Prints: [1, 2, 3, 4, 5]
+        console.log("Even Numbers (filter):", evenNumbers); // Prints: [2, 4]
+
+        // 5. reduce() Method
+        console.log("reduce() Method:");
+        const sum = numbers.reduce((accumulator, number) => accumulator + number, 0);
+        console.log(sum); // Prints: 15 (1 + 2 + 3 + 4 + 5)
+
+        // 6. every() Method
+        console.log("every() Method:");
+        const allPositive = numbers.every((number) => number > 0);
+        console.log(allPositive); // Prints: true (all numbers are positive)
+
+        // 7. includes() Method
+        console.log("includes() Method:");
+        const hasThree = numbers.includes(3);
+        console.log(hasThree); // Prints: true (3 is in the array)
+
+        // 8. find() Method
+        console.log("find() Method:");
+        const foundNumber = numbers.find((number) => number > 3);
+        console.log(foundNumber); // Prints: 4 (the first number greater than 3)
+
+        // 9. indexOf() Method
+        console.log("indexOf() Method:");
+        const index = numbers.indexOf(4);
+        console.log(index); // Prints: 3 (index of 4 in the array)
+
+        // 10. new Array() Method
+        console.log("new Array() Method:");
+        const newArray = new Array(3).fill(0);
+        console.log(newArray); // Prints: [0, 0, 0]
+    </script>
+</body>
+</html>
