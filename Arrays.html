@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Methods in JavaScript</title>
+  </head>
+  <body>
+    <h2>Open the console to see the output</h2>
+
+    <script>
+      let arr = [1, 2, 3, 4, 5];
+
+      // 1. push() - Adds an element to the end of the array
+      arr.push(6);
+      console.log("push:", arr); // [1, 2, 3, 4, 5, 6]
+
+      // 2. pop() - Removes and returns the last element
+      let last = arr.pop();
+      console.log("pop:", last, arr); // 6, [1, 2, 3, 4, 5]
+
+      // 3. unshift() - Adds an element to the beginning
+      arr.unshift(0);
+      console.log("unshift:", arr); // [0, 1, 2, 3, 4, 5]
+
+      // 4. shift() - Removes and returns the first element
+      let first = arr.shift();
+      console.log("shift:", first, arr); // 0, [1, 2, 3, 4, 5]
+
+      // 5. slice(start, end) - Extracts a section without modifying the original
+      let sliced = arr.slice(1, 3);
+      console.log("slice:", sliced, arr); // [2, 3], [1, 2, 3, 4, 5]
+
+      // 6. splice(start, deleteCount, ...items) - Modifies array (remove/replace/add)
+      arr.splice(2, 1, 99); // Replace index 2 with 99
+      console.log("splice:", arr); // [1, 2, 99, 4, 5]
+
+      // 7. indexOf(value) - Finds the index of a value
+      console.log("indexOf 99:", arr.indexOf(99)); // 2
+
+      // 8. includes(value) - Checks if a value exists in the array
+      console.log("includes 99:", arr.includes(99)); // true
+
+      // 9. join(separator) - Converts an array to a string with a separator
+      console.log("join:", arr.join(" - ")); // "1 - 2 - 99 - 4 - 5"
+
+      // 10. sort() - Sorts the array (alphanumeric by default)
+      let nums = [3, 1, 4, 2];
+      nums.sort();
+      console.log("sort:", nums); // [1, 2, 3, 4]
+
+      // 11. reverse() - Reverses the array order
+      nums.reverse();
+      console.log("reverse:", nums); // [4, 3, 2, 1]
+
+      let numbers = [10, 5, 25, 1, 100];
+
+      //   10. sort() - Further explanation : Sorts the array (alphanumeric by default)
+
+      // 1. Incorrect sorting using default sort() (sorts as strings)
+      numbers.sort();
+      console.log("Incorrect sort (as strings):", numbers);
+      // Output: [1, 10, 100, 25, 5] (Incorrect order)
+
+      // Why this happens:
+      // The default sort() method converts numbers to strings and compares them character by character.
+      // "100" comes after "1" because "1" comes before "10" in lexicographical (alphabetical) order.
+
+      // 2. Correct sorting using a custom compare function
+      numbers = [10, 5, 25, 1, 100]; // Reset the array to original
+      numbers.sort((a, b) => a - b); // Sort as numbers (not strings)
+      console.log("Correct sort (as numbers):", numbers);
+      // Output: [1, 5, 10, 25, 100] (Correct order)
+
+      // Explanation of the compare function (a - b):
+      // - If the result of a - b is negative, 'a' comes first.
+      // - If the result of a - b is positive, 'b' comes first.
+      // - If the result is zero, the order of 'a' and 'b' remains unchanged.
+    </script>
+  </body>
+</html>
