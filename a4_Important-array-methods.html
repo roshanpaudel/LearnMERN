@@ -1,101 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Array Methods</title>
-</head>
-<body>
-    <h2>JavaScript Array Methods Example</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Array Methods (Easy Examples)</title>
+  </head>
+  <body>
+    <h2>JavaScript Array Methods (Easy Examples)</h2>
     <p>Open the console (F12 → Console) to see the output.</p>
 
     <script>
-        // 1. concat() - Merges two or more arrays into one
-        console.log("1. concat():");
-        let arr1 = [1, 2], arr2 = [3, 4];
-        console.log(arr1.concat(arr2)); // [1, 2, 3, 4]
+      // 1. concat(): Combine two arrays.
+      console.log("1. concat():");
+      let fruits1 = ["apple", "banana"];
+      let fruits2 = ["orange", "grape"];
+      let allFruits = fruits1.concat(fruits2);
+      console.log("Combined fruits:", allFruits); // Output: ["apple", "banana", "orange", "grape"]
 
-        // 2. fill() - Fills all elements with a specific value
-        console.log("2. fill():");
-        console.log(new Array(5).fill(0)); // [0, 0, 0, 0, 0]
+      // 2. fill(): Fill an array with a value.
+      console.log("2. fill():");
+      let numbers = new Array(3).fill(5);
+      console.log("Filled numbers:", numbers); // Output: [5, 5, 5]
 
-        // 3. some() - Checks if at least one element meets a condition
-        console.log("3. some():");
-        console.log([3, 7, 10].some(num => num % 2 === 0)); // true (10 is even)
+      // 3. some(): Check if any item meets a condition.
+      console.log("3. some():");
+      let ages = [20, 25, 30, 17];
+      let hasTeen = ages.some((age) => age < 18);
+      console.log("Has a teen:", hasTeen); // Output: true
 
-        // 4. findIndex() - Finds the index of the first matching element
-        console.log("4. findIndex():");
-        console.log([5, 12, 8, 130].findIndex(num => num > 10)); // 1 (index of 12)
+      // 4. findIndex(): Find the first item's position that meets a condition.
+      console.log("4. findIndex():");
+      let scores = [70, 80, 90, 60];
+      let goodScoreIndex = scores.findIndex((score) => score > 80);
+      console.log("Good score index:", goodScoreIndex); // Output: 2
 
-        // 5. flat() - Flattens nested arrays into a single array
-        console.log("5. flat():");
-        console.log([1, [2, [3, 4]], 5].flat(2)); // [1, 2, 3, 4, 5]
+      // 5. flat(): Make nested arrays into one array.
+      console.log("5. flat():");
+      let nested = [1, [2, 3], [4, [5]]];
+      let flatArray = nested.flat(2); //flatten to 2 levels deep
+      console.log("Flattened array:", flatArray); // Output: [1, 2, 3, 4, 5]
 
-        // 6. flatMap() - Maps and flattens the array in one step
-        console.log("6. flatMap():");
-        console.log(["Hello", "World"].flatMap(word => word.split(""))); // ['H', 'e', 'l', 'l', 'o', 'W', 'o', 'r', 'l', 'd']
+      // 6. flatMap(): Map items and flatten the result.
+      console.log("6. flatMap():");
+      let words = ["hello world", "javascript fun"];
+      let letters = words.flatMap((word) => word.split(" "));
+      console.log("Letters:", letters); // Output: ['hello', 'world', 'javascript', 'fun']
 
-        // 7. at() - Accesses elements by positive or negative index
-        console.log("7. at():");
-        console.log([10, 20, 30, 40].at(-1)); // 40 (last element)
+      // 7. at(): Get an item by its position (positive or negative).
+      console.log("7. at():");
+      let colors = ["red", "green", "blue"];
+      console.log("Last color:", colors.at(-1)); // Output: blue
 
-        // 8. toSorted() - Returns a new sorted array without modifying the original
-        console.log("8. toSorted():");
-        console.log([5, 1, 4].toSorted()); // [1, 4, 5]
+      // 8. toSorted(): Sort a new copy of the array.
+      console.log("8. toSorted():");
+      let unsorted = [3, 1, 2];
+      let sorted = unsorted.toSorted();
+      console.log("Sorted array:", sorted); // Output: [1, 2, 3]
 
-        // 9. toSpliced() - Creates a modified copy of an array
-        console.log("9. toSpliced():");
-        console.log([1, 2, 3, 4].toSpliced(1, 2, 10, 20)); // [1, 10, 20, 4]
+      // 9. toSpliced(): Make a new array with items removed or added.
+      console.log("9. toSpliced():");
+      let items = ["pen", "paper", "book"];
+      let modifiedItems = items.toSpliced(1, 1, "ruler", "eraser");
+      console.log("Modified items:", modifiedItems); // Output: ["pen", "ruler", "eraser", "book"]
 
-        // 10. toReversed() - Returns a new reversed array without changing the original
-        console.log("10. toReversed():");
-        console.log([1, 2, 3].toReversed()); // [3, 2, 1]
+      // 10. toReversed(): Reverse a new copy of the array.
+      console.log("10. toReversed():");
+      let numbersToReverse = [1, 2, 3];
+      let reversedNumbers = numbersToReverse.toReversed();
+      console.log("Reversed numbers:", reversedNumbers); // Output: [3, 2, 1]
 
-        // 11. from() - Converts other data types into an array
-        console.log("11. from():");
-        console.log(Array.from("hello")); // ['h', 'e', 'l', 'l', 'o']
+      // 11. from(): Make an array from something else.
+      console.log("11. from():");
+      let text = "ABC";
+      let lettersArray = Array.from(text);
+      console.log("Letters array:", lettersArray); // Output: ['A', 'B', 'C']
 
-        // 12. isArray() - Checks if a value is an array
-        console.log("12. isArray():");
-        console.log(Array.isArray([1, 2, 3])); // true
+      // 12. isArray(): Check if something is an array.
+      console.log("12. isArray():");
+      console.log("Is array:", Array.isArray([1, 2, 3])); // Output: true
 
-        // 13. keys() - Returns an iterator for array indexes
-        console.log("13. keys():");
-        for (let key of ["a", "b", "c"].keys()) console.log(key); // 0, 1, 2
+      // 13. keys(): Get the positions of items in an array.
+      console.log("13. keys():");
+      let pets = ["cat", "dog", "bird"];
+      for (let key of pets.keys()) console.log("Key:", key); // Output: 0, 1, 2
 
-        // 14. values() - Returns an iterator for array values
-        console.log("14. values():");
-        for (let value of ["x", "y", "z"].values()) console.log(value); // x, y, z
+      // 14. values(): Get the values of items in an array.
+      console.log("14. values():");
+      let tools = ["hammer", "saw", "drill"];
+      for (let value of tools.values()) console.log("Value:", value); // Output: hammer, saw, drill
 
-        // 15. entries() - Returns an iterator for index-value pairs
-        console.log("15. entries():");
-        for (let entry of ["apple", "banana"].entries()) console.log(entry); // [0, "apple"], [1, "banana"]
+      // 15. entries(): Get both position and value.
+      console.log("15. entries():");
+      let cities = ["London", "Paris"];
+      for (let entry of cities.entries()) console.log("Entry:", entry); // Output: [0, "London"], [1, "Paris"]
 
-        // 16. copyWithin() - Copies elements within the same array
-        console.log("16. copyWithin():");
-        let copyArr = [1, 2, 3, 4, 5];
-        console.log(copyArr.copyWithin(1, 3)); // [1, 4, 5, 4, 5]
+      // 16. copyWithin(): Copy parts of an array to other parts.
+      console.log("16. copyWithin():");
+      let numbersToCopy = [10, 20, 30, 40, 50];
+      numbersToCopy.copyWithin(0, 3, 5); // copy 40, 50 to index 0.
+      console.log("Copied numbers:", numbersToCopy); // Output: [40, 50, 30, 40, 50]
 
-        // 17. group() - Groups elements into an object based on a function
-        console.log("17. group():");
-        let users = [{name: "Alice", age: 25}, {name: "Bob", age: 25}, {name: "Charlie", age: 30}];
-        console.log(users.group(user => user.age)); 
-        // Output: { 25: [{name: "Alice", age: 25}, {name: "Bob", age: 25}], 30: [{name: "Charlie", age: 30}] }
+      // 17. group(): Group items by a property.
+      console.log("17. group():");
+      let people = [
+        { name: "Alice", age: 25 },
+        { name: "Bob", age: 30 },
+        { name: "Charlie", age: 25 },
+      ];
+      let groupedPeople = people.group((person) => person.age);
+      console.log("Grouped people:", groupedPeople); // Output: { 25: [ { name: 'Alice', age: 25 }, { name: 'Charlie', age: 25 } ], 30: [ { name: 'Bob', age: 30 } ] }
 
-        // 18. groupToMap() - Groups elements into a Map instead of an object
-        console.log("18. groupToMap():");
-        let people = [{name: "John", gender: "male"}, {name: "Jane", gender: "female"}];
-        console.log(people.groupToMap(person => person.gender));
+      // 18. groupToMap(): Group items into a Map.
+      console.log("18. groupToMap():");
+      let animals = [
+        { name: "Lion", type: "Mammal" },
+        { name: "Eagle", type: "Bird" },
+        { name: "Bear", type: "Mammal" },
+      ];
+      let animalsMap = animals.groupToMap((animal) => animal.type);
+      console.log("Animals Map:", animalsMap);
 
-        // 19. sort() with a comparator - Correctly sorts numbers in ascending order
-        console.log("19. sort() with a comparator:");
-        let nums = [10, 1, 21, 2];
-        console.log(nums.sort((a, b) => a - b)); // [1, 2, 10, 21]
+      // 19. sort() with a comparator: Sort numbers correctly.
+      console.log("19. sort() with a comparator:");
+      let unsortedNumbers = [10, 5, 20, 1];
+      let sortedNumbers = unsortedNumbers.sort((a, b) => a - b);
+      console.log("Sorted numbers:", sortedNumbers); // Output: [1, 5, 10, 20]
 
-        // 20. reverse() with spread - Creates a reversed copy of an array
-        console.log("20. reverse() with spread:");
-        let arr = [1, 2, 3];
-        console.log([...arr].reverse()); // [3, 2, 1]
+      // 20. reverse() with spread: Reverse without changing the original.
+      console.log("20. reverse() with spread:");
+      let original = [1, 2, 3];
+      let reversedCopy = [...original].reverse();
+      console.log("Reversed copy:", reversedCopy); // Output: [3, 2, 1]
     </script>
-</body>
+  </body>
 </html>
