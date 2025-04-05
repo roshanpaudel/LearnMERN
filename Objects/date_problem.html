@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Javascript palyground</h1>
     <script>
-        
-        function expiryOfFood(food,expiryDate) {
-expiryDate.tot
-            
-        }
+      function expiryOfFood(food, expiryDate) {
+        const now = new Date();
+        const dateExpiry =
+          expiryDate instanceof Date ? expiryDate : new Date(expiryDate);
+        const dateDifference = dateExpiry.getTime() - now.getTime();
+        const milliToDay = Math.ceil(dateDifference / (24 * 3600 * 1000));
+        milliToDay >= 0
+          ? console.log(food, " is expiring in", Math.abs(milliToDay), "days")
+          : console.log(food, " is expired", Math.abs(milliToDay), "days ago");
+      }
+
+      expiryOfFood("Ramen", "2025-04-05");
     </script>
-</body>
+  </body>
 </html>
