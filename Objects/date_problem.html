@@ -15,11 +15,16 @@
         const dateDifference = dateExpiry.getTime() - now.getTime();
         const milliToDay = Math.ceil(dateDifference / (24 * 3600 * 1000));
         milliToDay >= 0
-          ? console.log(food, " is expiring in", Math.abs(milliToDay), "days")
+          ? console.log(
+              " You have",
+              Math.abs(milliToDay),
+              "days to use this",
+              food
+            )
           : console.log(food, " is expired", Math.abs(milliToDay), "days ago");
       }
 
-      expiryOfFood("Ramen", "2025-04-05");
+      expiryOfFood("Ramen", "2025-05-05");
     </script>
   </body>
 </html>
