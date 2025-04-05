@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Object Creation
+      // Objects are created using curly braces `{}`. They can have properties (keys) and corresponding values.
+      const person = {
+        name: "Alice", // Property: 'name', Value: "Alice"
+        age: 25, // Property: 'age', Value: 25
+        profession: "Developer", // Property: 'profession', Value: "Developer"
+      };
+
+      // 2. Accessing Object Properties
+      // You can access properties using either dot notation or bracket notation.
+      console.log(person.name); // Dot notation: Output: Alice
+      console.log(person["age"]); // Bracket notation: Output: 25
+
+      // 3. Adding/Updating Properties
+      // You can add new properties to an object or update existing ones.
+      person.city = "New York"; // Adding a new property 'city' with value "New York"
+      person.age = 26; // Updating the 'age' property to 26
+
+      console.log(person.city); // Output: New York
+      console.log(person.age); // Output: 26
+
+      // 4. Deleting Properties
+      // You can delete properties from an object using the `delete` operator.
+      delete person.profession; // Removes the 'profession' property
+
+      console.log(person.profession); // Output: undefined (since the property is deleted)
+
+      // 5. Checking if a Property Exists
+      // Use the 'in' operator to check if a property exists in an object.
+      console.log("name" in person); // Output: true (property 'name' exists)
+      console.log("profession" in person); // Output: false (property 'profession' was deleted)
+
+      // 6. Iterating Over Object Properties
+      // Use `for...in` loop to iterate through all properties of an object.
+      for (let key in person) {
+        console.log(`${key}: ${person[key]}`);
+      }
+      // Output:
+      // name: Alice
+      // age: 26
+      // city: New York
+
+      // 7. Object Destructuring
+      // Destructuring allows you to extract properties into variables.
+      const { name, age } = person;
+      console.log(name); // Output: Alice
+      console.log(age); // Output: 26
+
+      // 8. Nested Objects
+      // Objects can also contain other objects as properties.
+      const employee = {
+        name: "John",
+        department: {
+          name: "Engineering",
+          location: "Building A",
+        },
+      };
+
+      console.log(employee.department.name); // Output: Engineering
+      console.log(employee["department"]["location"]); // Output: Building A
+
+      // 9. Object Methods
+      // Objects can also have functions as properties, called methods.
+      const calculator = {
+        add: function (a, b) {
+          return a + b;
+        },
+        subtract(a, b) {
+          return a - b; // Shortened method syntax (ES6)
+        },
+      };
+
+      console.log(calculator.add(5, 3)); // Output: 8
+      console.log(calculator.subtract(5, 3)); // Output: 2
+    </script>
+  </body>
+</html>

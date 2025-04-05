@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. ES6 Object { } Destructuring
+      // Object destructuring allows you to extract properties from an object and assign them to variables.
+
+      const person = { name: "Alice", age: 25, profession: "Developer" };
+
+      // Destructuring the 'name' and 'age' properties into variables
+      const { name, age } = person;
+
+      console.log(name); // Output: Alice
+      console.log(age); // Output: 25
+
+      // 2. Setting Default Values with Destructuring
+      // You can provide default values when destructuring an object. This is useful when the property might be undefined.
+
+      const person2 = { name: "Bob" }; // 'age' is missing
+
+      const { name, age = 30 } = person2; // Default value for 'age' is set to 30
+
+      console.log(name); // Output: Bob
+      console.log(age); // Output: 30 (since 'age' was not present in person2, the default value is used)
+
+      // 3. ES6 Rest Operator
+      // The rest operator allows you to collect remaining properties of an object into a new object.
+
+      const person3 = {
+        name: "Charlie",
+        age: 35,
+        profession: "Teacher",
+        city: "New York",
+      };
+
+      // Using rest operator to collect remaining properties into 'otherInfo'
+      const { name, age, ...otherInfo } = person3;
+
+      console.log(name); // Output: Charlie
+      console.log(age); // Output: 35
+      console.log(otherInfo); // Output: { profession: "Teacher", city: "New York" }
+
+      // 4. ES6 Spread Operator
+      // The spread operator allows you to create a shallow copy of an object or merge objects.
+
+      const person4 = { name: "David", age: 40 };
+
+      // Creating a shallow copy of the person object
+      const newPerson = { ...person4 };
+
+      console.log(newPerson); // Output: { name: "David", age: 40 }
+
+      // Merging two objects
+      const updatedPerson = { ...person4, city: "Los Angeles" };
+      console.log(updatedPerson); // Output: { name: "David", age: 40, city: "Los Angeles" }
+
+      // 5. Shallow Copy vs Deep Copy
+      // A shallow copy creates a new object, but nested objects are still referenced.
+      // A deep copy creates a completely independent copy, including nested objects.
+
+      const person5 = {
+        name: "Eve",
+        address: {
+          city: "San Francisco",
+          zip: 94107,
+        },
+      };
+
+      // Shallow copy (nested objects are referenced)
+      const shallowCopy = { ...person5 };
+      shallowCopy.address.city = "Los Angeles"; // Modifying the nested object
+
+      console.log(person5.address.city); // Output: Los Angeles (affected by shallow copy)
+
+      // Deep copy (creates a completely independent copy)
+      const deepCopy = JSON.parse(JSON.stringify(person5)); // Creating a deep copy using JSON methods
+      deepCopy.address.city = "Miami";
+
+      console.log(person5.address.city); // Output: San Francisco (not affected by deep copy)
+      console.log(deepCopy.address.city); // Output: Miami
+
+      // 6. Loop Through Objects
+      // Use for...in to loop through the properties of an object
+
+      const person6 = { name: "Grace", age: 29, profession: "Artist" };
+
+      // Looping through each property and logging its key and value
+      for (let key in person6) {
+        console.log(`${key}: ${person6[key]}`);
+      }
+      // Output:
+      // name: Grace
+      // age: 29
+      // profession: Artist
+    </script>
+  </body>
+</html>
