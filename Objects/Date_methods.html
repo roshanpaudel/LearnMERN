@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // --- 15 Simple JavaScript Date Methods with Proper Explanations ---
+
+      // Create a Date object representing the current moment.
+      // Current time reference: ~Sat Apr 05 2025 19:56:42 AEST
+      const now = new Date();
+
+      // 1. `new Date()` - Create a Date Object
+      // This is the main way to create dates.
+      // You can create the current date/time (like 'now' above)
+      // or a specific date. Remember month is 0-indexed! (0=Jan, 1=Feb, ...)
+      const specificDate = new Date(2025, 0, 15); // Creates Jan 15, 2025, 00:00:00 local time
+      console.log("1. Current Date Object:", now.toString()); // Shows full date/time/timezone
+      console.log("   Specific Date Object:", specificDate.toDateString()); // Shows just the date part
+
+      // 2. `getFullYear()` - Get the Year
+      // Extracts the 4-digit year from your Date object, according to local time.
+      const year = now.getFullYear();
+      console.log("2. Get Year (local time):", year); // e.g., 2025
+
+      // 3. `getMonth()` - Get the Month (0-11)
+      // Extracts the month number, BUT it's zero-based (January is 0, Feb is 1, ..., Dec is 11).
+      // This is based on local time.
+      const monthIndex = now.getMonth();
+      console.log("3. Get Month (0-11, local time):", monthIndex); // e.g., 3 (because April is the 4th month)
+
+      // 4. `getDate()` - Get the Day of the Month (1-31)
+      // Extracts the day number within the month (1 to 31), according to local time.
+      const dayOfMonth = now.getDate();
+      console.log("4. Get Day of Month (1-31, local time):", dayOfMonth); // e.g., 5
+
+      // 5. `getDay()` - Get the Day of the Week (0-6)
+      // Extracts the day of the week number, zero-based (Sunday is 0, Mon is 1, ..., Saturday is 6).
+      // This is based on local time.
+      const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      console.log("5. Get Day of Week (0=Sun, local time):", dayOfWeek); // e.g., 6 (Saturday)
+
+      // 6. `getHours()`, `getMinutes()`, `getSeconds()` - Get Time Components
+      // Extract the hours (0-23), minutes (0-59), or seconds (0-59) from the Date object,
+      // according to local time.
+      const hours = now.getHours(); // 24-hour format
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      console.log(`6. Get Time (local): ${hours}h ${minutes}m ${seconds}s`); // e.g., 19h 56m 42s
+
+      // 7. `getTime()` - Get Timestamp (Milliseconds since Epoch)
+      // Returns the number of milliseconds that have passed since January 1, 1970, 00:00:00 UTC.
+      // This value is independent of timezone and is great for comparing exact moments in time.
+      const timestamp = now.getTime();
+      console.log("7. Get Timestamp (ms since 1970 UTC):", timestamp);
+
+      // --- Methods that CHANGE the Date Object ---
+      // Be careful: These methods modify the date object they are called on!
+
+      // 8. `setDate()` - Change the Day of the Month (1-31)
+      // Modifies the day part of the date. If the day number is too large/small,
+      // it automatically adjusts the month and year.
+      let changingDate1 = new Date(2025, 3, 5); // Create a date: April 5, 2025
+      console.log("8. Before setDate(10):", changingDate1.toDateString()); // Original
+      changingDate1.setDate(10); // Change the day to the 10th
+      console.log("   After setDate(10):", changingDate1.toDateString()); // Now April 10, 2025
+
+      // 9. `setMonth()` - Change the Month (0-11)
+      // Modifies the month part (remember 0-11 index!). Also adjusts the year if needed
+      // (e.g., setting month 12 would become January of the next year).
+      let changingDate2 = new Date(2025, 3, 5); // April 5, 2025
+      console.log("9. Before setMonth(6):", changingDate2.toDateString()); // Original
+      changingDate2.setMonth(6); // Change month to July (index 6)
+      console.log("   After setMonth(6):", changingDate2.toDateString()); // Now July 5, 2025
+
+      // 10. `setFullYear()` - Change the Year
+      // Modifies the year part of the date.
+      let changingDate3 = new Date(2025, 3, 5); // April 5, 2025
+      console.log(
+        "10. Before setFullYear(2030):",
+        changingDate3.toDateString()
+      ); // Original
+      changingDate3.setFullYear(2030); // Change the year to 2030
+      console.log("    After setFullYear(2030):", changingDate3.toDateString()); // Now April 5, 2030
+
+      // --- Methods for Displaying Dates as Strings ---
+
+      // 11. `toString()` - Get Full Default String Representation
+      // Returns a long, human-readable string including the date, time, and
+      // timezone information based on the system's local settings. Format can vary slightly.
+      console.log("11. toString() (Default, local):", now.toString());
+
+      // 12. `toDateString()` - Get Just the Date Part as a String
+      // Returns a shorter, human-readable string with only the date portion (e.g., "Sat Apr 05 2025").
+      console.log("12. toDateString() (Date part only):", now.toDateString());
+
+      // 13. `toISOString()` - Get Standard ISO 8601 String (UTC)
+      // Returns a standardized string format (YYYY-MM-DDTHH:mm:ss.sssZ) widely used in APIs and databases.
+      // IMPORTANT: The time shown is ALWAYS converted to UTC (indicated by 'Z').
+      console.log(
+        "13. toISOString() (Standard format, ALWAYS UTC):",
+        now.toISOString()
+      );
+
+      // 14. `toLocaleDateString()` / `toLocaleTimeString()` - Get Locale-Formatted Strings
+      // Returns date or time strings formatted according to the user's system language
+      // and regional settings (e.g., MM/DD/YYYY vs DD/MM/YYYY, AM/PM vs 24-hour).
+      // Good for displaying dates/times to users in a familiar format.
+      console.log(
+        "14. toLocaleDateString() (User's local format):",
+        now.toLocaleDateString()
+      ); // e.g., 5/4/2025
+      console.log(
+        "    toLocaleTimeString() (User's local format):",
+        now.toLocaleTimeString()
+      ); // e.g., 7:56:42 PM
+
+      // 15. `Date.now()` - Static Method for Current Timestamp
+      // This is called directly on `Date`, not on a specific date object (`now`).
+      // It's a quick way to get the current timestamp (milliseconds since epoch UTC),
+      // often slightly faster than `new Date().getTime()`.
+      const currentTimestamp = Date.now();
+      console.log(
+        "15. Date.now() (Current ms since 1970 UTC):",
+        currentTimestamp
+      );
+    </script>
+  </body>
+</html>

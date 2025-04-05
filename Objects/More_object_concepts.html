@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. ES6 Object { } Destructuring
+      const user1 = { name: "Alice", age: 25, profession: "Developer" };
+      const { name: userName1, age: userAge1 } = user1;
+      console.log(userName1); // Output: Alice
+      console.log(userAge1); // Output: 25
+
+      // 2. Setting Default Values with Destructuring
+      const user2 = { name: "Bob" }; // 'age' is missing
+      const { name: userName2, age: userAge2 = 30 } = user2;
+      console.log(userName2); // Output: Bob
+      console.log(userAge2); // Output: 30
+
+      // 3. ES6 Rest Operator
+      const user3 = {
+        name: "Charlie",
+        age: 35,
+        profession: "Teacher",
+        city: "New York",
+      };
+      const { name: userName3, age: userAge3, ...otherDetails3 } = user3;
+      console.log(userName3); // Output: Charlie
+      console.log(userAge3); // Output: 35
+      console.log(otherDetails3); // Output: { profession: "Teacher", city: "New York" }
+
+      // 4. ES6 Spread Operator
+      const user4 = { name: "David", age: 40 };
+      const newUser4 = { ...user4 };
+      console.log(newUser4); // Output: { name: "David", age: 40 }
+
+      const extendedUser4 = { ...user4, city: "Los Angeles" };
+      console.log(extendedUser4); // Output: { name: "David", age: 40, city: "Los Angeles" }
+
+      // 5. Shallow Copy vs Deep Copy
+      const user5 = {
+        name: "Eve",
+        address: {
+          city: "San Francisco",
+          zip: 94107,
+        },
+      };
+
+      // Shallow copy
+      const shallowCopy5 = { ...user5 };
+      shallowCopy5.address.city = "Los Angeles";
+      console.log(user5.address.city); // Output: Los Angeles
+
+      // Deep copy
+      const deepCopy5 = JSON.parse(JSON.stringify(user5));
+      deepCopy5.address.city = "Miami";
+      console.log(user5.address.city); // Output: Los Angeles
+      console.log(deepCopy5.address.city); // Output: Miami
+
+      // 6. Loop Through Object Properties
+      const user6 = { name: "Grace", age: 29, profession: "Artist" };
+      for (let key in user6) {
+        console.log(`${key}: ${user6[key]}`);
+      }
+      // Output:
+      // name: Grace
+      // age: 29
+      // profession: Artist
+
+       // Object -Array Conversion
+       // Define an object
+    const user = {
+      name: "Alice",
+      age: 25,
+      city: "Sydney"
+    };
+   
+    // 1. Convert object to array of keys
+    const keys = Object.keys(user); // Extracts keys as an array
+    console.log("Keys:", keys);     // Output: ["name", "age", "city"]
+
+    // 2. Convert object to array of values
+    const values = Object.values(user); // Extracts values as an array
+    console.log("Values:", values);     // Output: ["Alice", 25, "Sydney"]
+
+    // 3. Convert object to array of key-value pairs
+    const entries = Object.entries(user); // Converts object to array of [key, value] pairs
+    console.log("Entries:", entries);
+    // Output: [["name", "Alice"], ["age", 25], ["city", "Sydney"]]
+
+    // 4. Convert entries back to object
+    const reconstructed = Object.fromEntries(entries); // Converts array of entries back to an object
+    console.log("Reconstructed Object:", reconstructed);
+    // Output: { name: "Alice", age: 25, city: "Sydney" }
+
+    // These methods are useful for transforming, filtering, or iterating over objects like arrays.
+  </script>
+    </script>
+  </body>
+</html>
