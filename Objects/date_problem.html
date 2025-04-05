@@ -8,23 +8,54 @@
   <body>
     <h1>Javascript palyground</h1>
     <script>
-      function expiryOfFood(food, expiryDate) {
-        const now = new Date();
-        const dateExpiry =
-          expiryDate instanceof Date ? expiryDate : new Date(expiryDate);
-        const dateDifference = dateExpiry.getTime() - now.getTime();
-        const milliToDay = Math.ceil(dateDifference / (24 * 3600 * 1000));
-        milliToDay >= 0
+      //   function expiryOfFood(food, expiryDate) {
+      //     const now = new Date();
+      //     const dateExpiry =
+      //       expiryDate instanceof Date ? expiryDate : new Date(expiryDate);
+      //     const dateDifference = dateExpiry.getTime() - now.getTime();
+      //     const milliToDay = Math.ceil(dateDifference / (24 * 3600 * 1000));
+      //     milliToDay >= 0
+      //       ? console.log(
+      //           " You have",
+      //           Math.abs(milliToDay),
+      //           "days to use this",
+      //           food
+      //         )
+      //       : console.log(food, " is expired", Math.abs(milliToDay), "days ago");
+      //   }
+
+      //   expiryOfFood("Ramen", "2025-05-05");
+      const mstoDay = 24 * 3600 * 1000;
+
+      const getExpiry = ({ name, expiry }) => {
+        const nowTS = new Date().getTime();
+        const expiryTS = new Date(expiry).getTime();
+        const dateDifference = Math.ceil((expiryTS - nowTS) / mstoDay);
+
+        dateDifference > 1
           ? console.log(
               " You have",
-              Math.abs(milliToDay),
+              Math.abs(dateDifference),
               "days to use this",
-              food
+              name
             )
-          : console.log(food, " is expired", Math.abs(milliToDay), "days ago");
-      }
+          : console.log(
+              name,
+              " is expired",
+              Math.abs(dateDifference),
+              "days ago"
+            );
+      };
 
-      expiryOfFood("Ramen", "2025-05-05");
+      const foods = [
+        { name: "ramen", expiry: "2025-4-12" },
+        { name: "chicken", expiry: "2025-7-5" },
+        { name: "chips", expiry: "2024-3-01" },
+      ];
+
+      foods.map((food) => {
+        const result = getExpiry(food);
+      });
     </script>
   </body>
 </html>
