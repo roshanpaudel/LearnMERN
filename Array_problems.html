@@ -7,12 +7,51 @@
   </head>
   <body>
     <script>
-      let newArray = Array(50).fill(1);
-      let randomArray = newArray.map(() => {
-        return Math.round(Math.random() * 100);
-      });
-      console.log(randomArray);
+      // array with random numbers from 1 to 100
+      let randomArray = [50];
+      for (i = 0; i < 50; i++) {
+        randomArray[i] = Math.floor(Math.random() * 100 + 1);
+      }
+
+      console.log("Random array:", randomArray);
+
+      // sorting the array
+      randomArray.sort((a, b) => b - a);
+      console.log("Sorted Array:", randomArray);
+
+      //Sum of array
+      let accumulator = 0;
+      sumOfArray = randomArray.reduce(
+        (accumulator, number) => accumulator + number
+      );
+      console.log("Sum of Array:", sumOfArray);
+
+      //filter array to odd and even arrays
+      let evenArray = randomArray.filter((a) => a % 2 === 0);
+      console.log("Even array:", evenArray);
+
+      let oddArray = randomArray.filter((a) => a % 2 === 1);
+      console.log("Odd array:", oddArray);
+
+      //make array by removing duplicates
+      let uniqueArray = [];
+      for (i = 0; i < 50; i++) {
+        if (!uniqueArray.includes(randomArray[i])) {
+          uniqueArray.push(randomArray[i]);
+        }
+      }
+      console.log("UniqueArray:", uniqueArray);
+
+      // an array of 50 unique random numbers
+
+      const uniqueNewArray = [];
+      for (let i = 0; uniqueNewArray.length < 50; i++) {
+        let randomValue = Math.floor(Math.random() * 100 + 1);
+        if (!uniqueNewArray.includes(randomValue)) {
+          uniqueNewArray.push(randomValue);
+        }
+      }
+      console.log("Unique new random array:", uniqueNewArray);
     </script>
   </body>
 </html>
-
