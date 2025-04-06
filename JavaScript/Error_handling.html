@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Function that might throw an error
+      function parseJSON(jsonString) {
+        try {
+          // Try parsing the JSON string
+          const data = JSON.parse(jsonString);
+          console.log("Parsed Data:", data);
+        } catch (error) {
+          // If parsing fails, handle the error
+          console.error("❌ Error parsing JSON:", error.message);
+        } finally {
+          // This block always runs, success or error
+          console.log("✅ Finished parsing attempt.");
+        }
+      }
+
+      // Example 1: Valid JSON
+      parseJSON('{"name": "Alice", "age": 25}');
+
+      // Example 2: Invalid JSON (missing quote)
+      parseJSON("{name: Alice, age: 25}");
+
+      // Throwing custom errors
+      function divide(a, b) {
+        if (b === 0) {
+          throw new Error("Division by zero is not allowed.");
+        }
+        return a / b;
+      }
+
+      try {
+        const result = divide(10, 0);
+        console.log("Result:", result);
+      } catch (err) {
+        console.error("⚠️ Custom Error:", err.message);
+      }
+    </script>
+  </body>
+</html>
