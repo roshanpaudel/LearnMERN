@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Problem: Find the output order of this code
+      const yoyo = () => console.log("0. " + (5 + 6));
+
+      console.log("1. log");
+
+      setTimeout(() => {
+        console.log("2. inside frist set timeout");
+      }, 5000);
+
+      console.log("3. after first setTime out");
+
+      const sayHey = () => {
+        console.log("4. inside sayhey");
+        yoyo();
+      };
+
+      setTimeout(() => {
+        console.log("5. inside second set timeout");
+      }, 0);
+
+      sayHey();
+
+      console.log("6. last clg");
+
+      //Solution - Output Order:
+      // 1. log
+      // 3. after first setTime
+      // 4. inside sayhey
+      // 0. 11
+      // 6. last clg
+      // 5. inside second set timeout out
+      // 2. inside frist set timeout
+
+      // Although Output 5 has 0ms delay, a setTimeout() with 0ms pushes its callback to the task queue, not the immediate call stack.
+      // JavaScript executes all synchronous code first, and only then processes tasks from the queue,
+      // hence the delayed execution despite the 0ms delay.
+    </script>
+  </body>
+</html>
