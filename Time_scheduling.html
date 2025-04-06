@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Time Scheduling in JavaScript (with clearTimeout and clearInterval)
+
+      // 1. setTimeout() - runs a function once after a delay
+      const timeoutId = setTimeout(() => {
+        console.log("This should run after 3 seconds");
+      }, 3000); // Delay is 3000 milliseconds (3 seconds)
+
+      // 2. clearTimeout() - cancels a scheduled timeout before it executes
+      clearTimeout(timeoutId); // This will prevent the above timeout from running
+      console.log("Timeout was cleared before it could run");
+
+      // 3. setInterval() - runs a function repeatedly at a given interval
+      let count = 0;
+      const intervalId = setInterval(() => {
+        count++;
+        console.log(`Interval running: count = ${count}`);
+
+        // 4. clearInterval() - stops the interval based on a condition
+        if (count === 5) {
+          clearInterval(intervalId); // Stop interval after 5 runs
+          console.log("Interval cleared after 5 repeats");
+        }
+      }, 1000); // Interval set to 1000 milliseconds (1 second)
+
+      // Note:
+      // setTimeout → one-time delay
+      // clearTimeout → cancels that delay
+      // setInterval → repeats at intervals
+      // clearInterval → cancels the repetition
+    </script>
+  </body>
+</html>
