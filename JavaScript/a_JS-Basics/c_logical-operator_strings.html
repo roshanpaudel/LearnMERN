@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Check console...</h1>
+
+    <script>
+      // SECTION: Logical Operators and Conditional Statements
+
+      // Truthy: true, 2 , -4, " d", {}, [], ()=>{}
+      // Falsy : false, 0, NaN, "", null, undefined
+      // Logical operators and conditional statements.
+      const logicalNot = !"hi there";
+      console.log(logicalNot); // Output: false
+
+      // if (logicalNot) {
+      //   console.log("you pass through the  if condition");
+      // }
+
+      const ageValue = 0;
+      const vipStatus = true;
+
+      // if (ageValue) {
+      //   console.log("Welcome");
+      // }
+
+      const orValue = ageValue || "N/A";
+      console.log(orValue); // Output: N/A
+
+      // ageValue < 50 && console.log("Welcome");
+
+      if ((ageValue >= 18 && ageValue < 50) || vipStatus === true) {
+        console.log("Welcome to the coding party!"); // Output: Welcome to the coding party!
+      } else {
+        console.log("Go home kido!");
+      }
+
+      const petType = "cat";
+
+      if (petType === "cat") {
+        console.log("Meowww"); // Output: Meowww
+      } else if (petType === "dog") {
+        console.log("Wooff");
+      } else if (petType === "cow") {
+        console.log("Mooowowow");
+      } else {
+        console.log(";kjdfa hakhfkahsdkfhasw aousdfhka sadlflsdk");
+      }
+
+      const petSwitchType = "dogasdf ";
+
+      switch (petSwitchType) {
+        case "cat":
+          console.log("Meowww");
+          break;
+        case "dog":
+          console.log("Wooff");
+          break;
+        case "cow":
+          console.log("Mooowowow");
+          break;
+        default:
+          console.log(";kjdfa hakhfkahsdkfhasw aousdfhka sadlflsdk"); // Output: ;kjdfa hakhfkahsdkfhasw aousdfhka sadlflsdk
+      }
+
+      const ageTernaryValue = 30;
+      ageTernaryValue < 50 ? console.log("welcom") : console.log("Go home"); // Output: welcom
+
+      // SECTION: Numbers and Strings
+
+      // Numbers and string manipulation.
+      const largeNumber = 30580984843456;
+      console.log("Large Number:", largeNumber); // Output: Large Number: 30580984843456
+
+      const stringNumber = "52.442a";
+      console.log("parseInt:", parseInt(stringNumber)); // Output: parseInt: 52
+      console.log("parseFloat:", parseFloat(stringNumber)); // Output: parseFloat: 52.442
+      console.log("isNaN:", isNaN(parseFloat(stringNumber))); // Output: isNaN: false
+
+      const exampleString =
+        'Hi there this is "Prem Acharya", and I live in Sydne!';
+      console.log("Original String:", exampleString); // Output: Original String: Hi there this is "Prem Acharya", and I live in Sydne!
+      console.log("Length:", exampleString.length); // Output: Length: 52
+      console.log("toLowerCase:", exampleString.toLowerCase()); // Output: toLowerCase: hi there this is "prem acharya", and i live in sydne!
+      console.log("toUpperCase:", exampleString.toUpperCase()); // Output: toUpperCase: HI THERE THIS IS "PREM ACHARYA", AND I LIVE IN SYDNE!
+      console.log("charAt[20]:", exampleString[20]); // Output: charAt[20]: A
+      console.log("charAt(20):", exampleString.charAt(20)); // Output: charAt(20): A
+      console.log("indexOf('e'):", exampleString.indexOf("e")); // Output: indexOf('e'): 4
+      console.log("lastIndexOf('there'):", exampleString.lastIndexOf("there")); // Output: lastIndexOf('there'): 3
+      console.log("replace:", exampleString.replace("Prem", "Sam")); // Output: replace: Hi there this is "Sam Acharya", and I live in Sydne!
+      console.log("replaceAll:", exampleString.replaceAll("i", "u")); // Output: replaceAll: Hu there thus us "Prem Acharya", and U luve un Sydne!
+      console.log("slice(3, 5):", exampleString.slice(3, 5)); // Output: slice(3, 5): th
+      console.log("slice(3):", exampleString.slice(3)); // Output: slice(3): there this is "Prem Acharya", and I live in Sydne!
+      console.log("slice(-3, -2):", exampleString.slice(-3, -2)); // Output: slice(-3, -2): d
+      console.log("substring(3, 5):", exampleString.substring(3, 5)); // Output: substring(3, 5): th
+      console.log("includes('Prem'):", exampleString.includes("Prem")); // Output: includes('Prem'): true
+      console.log("search('Prsdem'):", exampleString.search("Prsdem")); // Output: search('Prsdem'): -1
+    </script>
+  </body>
+</html>

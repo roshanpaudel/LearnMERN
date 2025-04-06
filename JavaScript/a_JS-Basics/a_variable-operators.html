@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Check console...</h1>
+
+    <script>
+      // SECTION: Comments and Basic Execution
+
+      // console.log("Hellow world!"); // This line would have outputted "Hellow world!" to the console.
+      // alert("hi there click ok to complete my executioin"); // This line would have displayed an alert box.
+
+      /*
+      Multi-line comment:
+      This section demonstrates how to use comments to annotate code.
+      */
+
+      // SECTION: Variables and Data Types
+
+      // Variable declaration and assignment using var, let, and const.
+      // var oldVariableName; // Commented out: Declaring a variable using 'var' (older syntax).
+      // oldVariableName = "Prem Acharya"; // Commented out: Assigning a value to the 'var' variable.
+      let changeableVariableName = "Sydney"; // Declaring and initializing a variable using 'let' (block-scoped).
+
+      console.log(changeableVariableName); // Output: Sydney
+
+      // changeableVariableName = "Sam"; // Commented out: Changing the value of a 'let' variable.
+
+      const constantVariableName = 5; // Declaring a constant variable using 'const' (block-scoped, cannot be reassigned).
+      console.log(constantVariableName); // Output: 5
+
+      // Demonstrating case sensitivity in variable names.
+      let firstVariable = "Prem";
+      let FirstVariable = "Prem";
+      let ALLCAPS_VARIABLE = "Prem";
+      let camelCaseVariable = "Prem";
+
+      // SECTION: Arithmetic Operations
+
+      let numberA = 5;
+      const numberB = 2;
+      const numberC = numberB;
+
+      // Arithmetic operations and their results.
+      const additionResult = numberA + numberB + numberC; // Addition
+      console.log("Addition:", additionResult); // Output: Addition: 9
+
+      const subtractionResult = numberA - numberB; // Subtraction
+      console.log("Subtraction:", subtractionResult); // Output: Subtraction: 3
+
+      const multiplicationResult = numberA * numberB; // Multiplication
+      console.log("Multiplication:", multiplicationResult); // Output: Multiplication: 10
+
+      const exponentiationResult = numberA ** numberB; // Exponentiation (ES2016)
+      console.log("Exponentiation:", exponentiationResult); // Output: Exponentiation: 25
+
+      const divisionResult = numberA / numberB; // Division
+      console.log("Division:", divisionResult); // Output: Division: 2.5
+
+      const modulusResult = numberA % numberB; // Modulus (remainder)
+      console.log("Modulus:", modulusResult); // Output: Modulus: 1
+
+      // Increment and decrement operators.
+      console.log(++numberA); // Increment 'a' before outputting. Output: 6
+      console.log(numberA); // Output the incremented value of 'a'. Output: 6
+
+      // SECTION: Comparisons
+
+      const value1 = 5;
+      const value2 = "5";
+
+      // Comparison operators.
+      console.log("value1 == value2:", value1 == value2); // Loose equality (type coercion). Output: true
+      console.log("value1 === value2:", value1 === value2); // Strict equality (no type coercion). Output: false
+      console.log("value1 >= value2:", value1 >= value2); // Greater than or equal to. Output: true
+      console.log("value1 <= value2:", value1 <= value2); // Less than or equal to. Output: true
+    </script>
+  </body>
+</html>
