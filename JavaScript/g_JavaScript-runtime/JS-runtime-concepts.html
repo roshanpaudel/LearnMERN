@@ -119,7 +119,12 @@
       // var loop: i = 3, counter = 4
       // var loop: i = 3, counter = 5
 
-      
+      // Explanation:
+      // - `var` is function-scoped, meaning there is only ONE shared `i` across all loop iterations.
+      // - By the time the `setTimeout` callbacks are actually run, the loop has already completed.
+      // - So `i` is now 3 (since loop stops when i === 3), and all 3 callbacks "see" this final value.
+      // - The `counter` is incremented on each callback, so its value progresses (3, 4, 5), but `i` stays 3.
+      // - Each setTimeout refers to the SAME `i`, because it was not captured per iteration (no block scope).
     </script>
   </body>
 </html>
