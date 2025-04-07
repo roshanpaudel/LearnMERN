@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Check console...</h1>
+    <script>
+      // JavaScript Runtime Concepts (with Examples & Output)
+
+      // 1. Call Stack & Memory Heap
+      function multiply(x, y) {
+        return x * y; // Call Stack pushes multiply, computes, and pops it off
+      }
+      const result = multiply(2, 3); // 6
+      console.log("Call Stack result:", result); // Output: 6
+
+      // 2. Event Loop & setTimeout (Async)
+      console.log("Start"); // Synchronous
+
+      setTimeout(() => {
+        console.log("setTimeout callback"); // Goes to Web APIs, then Callback Queue
+      }, 0);
+
+      console.log("End"); // Runs before setTimeout due to Event Loop
+      // Output:
+      // Start
+      // End
+      // setTimeout callback
+
+      // 3. JavaScript and Garbage Collection
+      function createUser() {
+        const user = { name: "Alice" };
+        return user;
+      }
+      let userRef = createUser(); // user object in memory
+      userRef = null; // No more references → eligible for garbage collection
+
+      // 4. Synchronous vs Asynchronous
+      function syncFunction() {
+        console.log("I'm synchronous");
+      }
+      async function asyncFunction() {
+        console.log("I'm async");
+      }
+      syncFunction();
+      asyncFunction();
+      // Output:
+      // I'm synchronous
+      // I'm async
+
+      // 5. Execution Context
+      function outer() {
+        const outerVar = "I'm outside!";
+        function inner() {
+          // Inner gets its own execution context with access to outer's
+          console.log(outerVar);
+        }
+        inner();
+      }
+      outer(); // Output: I'm outside!
+
+      // 6. Hoisting
+      hoistedFunction(); // Works due to hoisting
+
+      function hoistedFunction() {
+        console.log("This function is hoisted");
+      }
+
+      // Variable hoisting (undefined, not initialized)
+      console.log(hoistedVar); // Output: undefined
+      var hoistedVar = "I'm hoisted";
+
+      // 7. Closure
+      function makeCounter() {
+        let count = 0;
+        return function () {
+          count++;
+          console.log("Count is:", count);
+        };
+      }
+      const counter1 = makeCounter();
+      counter1(); // Count is: 1
+      counter1(); // Count is: 2
+
+      // 8. Scoping (Block vs Function Scope)
+      if (true) {
+        var functionScoped = "I'm function scoped";
+        let blockScoped = "I'm block scoped";
+        const constScoped = "Also block scoped";
+      }
+      console.log(functionScoped); // Works
+      // console.log(blockScoped); // Error: not defined
+      // console.log(constScoped); // Error: not defined
+
+      // 9. Closure + setTimeout + let
+      let counter = 0;
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          console.log(`let loop: i = ${i}, counter = ${counter++}`);
+        }, 0);
+      }
+      // Output:
+      // let loop: i = 0, counter = 0
+      // let loop: i = 1, counter = 1
+      // let loop: i = 2, counter = 2
+
+      // 10. Closure + setTimeout + var
+      counter = 0;
+      for (var i = 0; i < 3; i++) {
+        setTimeout(() => {
+          console.log(`var loop: i = ${i}, counter = ${counter++}`);
+        }, 0);
+      }
+      // Output:
+      // var loop: i = 3, counter = 3
+      // var loop: i = 3, counter = 4
+      // var loop: i = 3, counter = 5
+
+      
+    </script>
+  </body>
+</html>
