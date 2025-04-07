@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Open console....</h1>
+    <script>
+      // Factory Function:
+      // Explanation: A factory function is a function that creates and returns a new object.
+      // Significance:
+      //   - Simplifies object creation, especially when dealing with complex object structures.
+      //   - Encapsulates object creation logic, hiding implementation details.
+      //   - Allows for more flexible object creation, as you can add logic before returning the object.
+      //   - Useful for creating objects with different configurations or variations.
+
+      function createVehicle(type, color) {
+        return {
+          type: type,
+          color: color,
+          getDescription: function () {
+            return `This is a ${this.color} ${this.type}.`;
+          },
+        };
+      }
+
+      const car = createVehicle("car", "red");
+      const truck = createVehicle("truck", "blue");
+
+      console.log(car.getDescription()); // Output: This is a red car.
+      console.log(truck.getDescription()); // Output: This is a blue truck.
+
+      // Constructor Function:
+      // Explanation: A constructor function is a function used with the 'new' keyword to create objects.
+      // Significance:
+      //   - Establishes a pattern for creating objects of a specific type.
+      //   - Uses the 'this' keyword to set properties on the newly created object.
+      //   - Creates objects with a shared prototype, enabling efficient method sharing.
+      //   - Historically a common way to simulate classes before ES6.
+
+      function Animal(name, species) {
+        this.name = name;
+        this.species = species;
+        this.speak = function () {
+          return `The ${this.species}, ${this.name}, makes a sound.`;
+        };
+      }
+
+      const dog = new Animal("Buddy", "dog");
+      const cat = new Animal("Whiskers", "cat");
+
+      console.log(dog.speak()); // Output: The dog, Buddy, makes a sound.
+      console.log(cat.name); // Output: Whiskers
+
+      // Class-based OOP:
+      // Explanation: Introduced in ES6, classes provide a more structured and concise way to create objects and implement inheritance.
+      // Significance:
+      //   - Improves code readability and maintainability with a more familiar syntax.
+      //   - Provides a cleaner way to implement inheritance using 'extends' and 'super'.
+      //   - Under the hood, classes still use prototypes, but they abstract away the complexity.
+      //   - Aligns JavaScript more closely with other object-oriented languages.
+
+      class Shape {
+        constructor(color) {
+          this.color = color;
+        }
+
+        getColor() {
+          return this.color;
+        }
+      }
+
+      class Circle extends Shape {
+        constructor(color, radius) {
+          super(color);
+          this.radius = radius;
+        }
+
+        getArea() {
+          return Math.PI * this.radius * this.radius;
+        }
+      }
+
+      const myCircle = new Circle("green", 5);
+
+      console.log(myCircle.getColor()); // Output: green
+      console.log(myCircle.getArea()); // Output: 78.53981633974483
+
+      // "this" keyword:
+      // Explanation: The 'this' keyword refers to the object that is currently executing the function.
+      // Significance:
+      //   - Allows functions to access and manipulate the properties of the object they are called on.
+      //   - Provides context within methods, enabling object-oriented programming patterns.
+      //   - Its value changes based on how the function is called, which can lead to confusion if not understood.
+      //   - In arrow functions, 'this' is lexically scoped, inheriting the 'this' value from the surrounding code.
+
+      const calculator = {
+        value: 0,
+        add: function (num) {
+          this.value += num;
+          return this.value;
+        },
+        getValue: function () {
+          return this.value;
+        },
+        reset: () => {
+          // this.value will be undefined or throw an error in strict mode.
+          // this here is based on the surrounding scope.
+          return (this.value = 0);
+        },
+      };
+
+      console.log(calculator.add(5)); // Output: 5
+      console.log(calculator.add(10)); // Output: 15
+      console.log(calculator.getValue()); // output : 15.
+      console.log(calculator.reset()); //Output: 0 or undefined depending on environment and strict mode.
+    </script>
+  </body>
+</html>
