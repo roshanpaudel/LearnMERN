@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Parent Class Abstraction using 'throw new Error'
+
+      // Example BEFORE implementing abstraction with 'throw new Error'
+      class ShapeBefore {
+        calculateArea() {
+          // This is a generic implementation that doesn't make sense for all shapes
+          console.log("Calculating area (generic shape)...");
+          return 0;
+        }
+      }
+
+      class CircleBefore extends ShapeBefore {
+        constructor(radius) {
+          super();
+          this.radius = radius;
+        }
+
+        calculateArea() {
+          return Math.PI * this.radius * this.radius;
+        }
+      }
+
+      class RectangleBefore extends ShapeBefore {
+        constructor(length, width) {
+          super();
+          this.length = length;
+          this.width = width;
+        }
+
+        calculateArea() {
+          return this.length * this.width;
+        }
+      }
+
+      const genericShapeBefore = new ShapeBefore();
+      console.log(
+        "Generic Shape Area (Before):",
+        genericShapeBefore.calculateArea()
+      ); // Output: Calculating area (generic shape)... 0
+
+      const circleBefore = new CircleBefore(5);
+      console.log("Circle Area (Before):", circleBefore.calculateArea()); // Output: 78.53981633974483
+
+      const rectangleBefore = new RectangleBefore(4, 6);
+      console.log("Rectangle Area (Before):", rectangleBefore.calculateArea()); // Output: 24
+
+      console.log("\n--------------------\n");
+
+      // Example AFTER implementing abstraction with 'throw new Error' (new.target is the preferred and robust method)
+      class ShapeAfter {
+        constructor() {
+          if (new.target === ShapeAfter) {
+            throw new Error(
+              "ShapeAfter is an abstract class and cannot be instantiated directly."
+            );
+          }
+        }
+
+        calculateArea() {
+          throw new Error(
+            "Subclasses must implement the calculateArea method."
+          );
+        }
+      }
+
+      class CircleAfter extends ShapeAfter {
+        constructor(radius) {
+          super();
+          this.radius = radius;
+        }
+
+        calculateArea() {
+          return Math.PI * this.radius * this.radius;
+        }
+      }
+
+      class RectangleAfter extends ShapeAfter {
+        constructor(length, width) {
+          super();
+          this.length = length;
+          this.width = width;
+        }
+
+        calculateArea() {
+          return this.length * this.width;
+        }
+      }
+
+      // Attempting to instantiate the abstract class directly will now throw an error
+      try {
+        const genericShapeAfter = new ShapeAfter();
+        console.log(
+          "Generic Shape Area (After):",
+          genericShapeAfter.calculateArea()
+        );
+      } catch (error) {
+        console.error("Error creating ShapeAfter:", error.message); // Output: Error creating ShapeAfter: ShapeAfter is an abstract class and cannot be instantiated directly.
+      }
+
+      const circleAfter = new CircleAfter(5);
+      console.log("Circle Area (After):", circleAfter.calculateArea()); // Output: 78.53981633974483
+
+      const rectangleAfter = new RectangleAfter(4, 6);
+      console.log("Rectangle Area (After):", rectangleAfter.calculateArea()); // Output: 24
+
+      console.log("\n--------------------\n");
+
+      // Example using this.constructor to block instantiation (alternative approach)
+      class ShapeConstructorCheck {
+        constructor() {
+          if (this.constructor === ShapeConstructorCheck) {
+            throw new Error(
+              "ShapeConstructorCheck is an abstract class and cannot be instantiated directly."
+            );
+          }
+        }
+
+        calculatePerimeter() {
+          throw new Error(
+            "Subclasses must implement the calculatePerimeter method."
+          );
+        }
+      }
+
+      class Triangle extends ShapeConstructorCheck {
+        constructor(side1, side2, side3) {
+          super();
+          this.side1 = side1;
+          this.side2 = side2;
+          this.side3 = side3;
+        }
+
+        calculatePerimeter() {
+          return this.side1 + this.side2 + this.side3;
+        }
+      }
+
+      // Attempting to instantiate the abstract class directly will now throw an error
+      try {
+        const genericShapeConstructor = new ShapeConstructorCheck();
+        console.log(
+          "Generic Shape Perimeter:",
+          genericShapeConstructor.calculatePerimeter()
+        );
+      } catch (error) {
+        console.error("Error creating ShapeConstructorCheck:", error.message); // Output: Error creating ShapeConstructorCheck: ShapeConstructorCheck is an abstract class and cannot be instantiated directly.
+      }
+
+      const triangle = new Triangle(3, 4, 5);
+      console.log("Triangle Perimeter:", triangle.calculatePerimeter()); // Output: 12
+    </script>
+  </body>
+</html>
