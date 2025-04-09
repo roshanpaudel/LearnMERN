@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // -------------------
+      // 1. Encapsulation
+      // -------------------
+      // Encapsulation is the concept of wrapping data and methods that operate on the data into a single unit (class),
+      // and restricting direct access to some of the object's components.
+
+      class BankAccount {
+        #balance; // private property (encapsulated)
+
+        constructor(owner, initialBalance) {
+          this.owner = owner;
+          this.#balance = initialBalance;
+        }
+
+        deposit(amount) {
+          if (amount > 0) {
+            this.#balance += amount;
+          }
+        }
+
+        withdraw(amount) {
+          if (amount > 0 && amount <= this.#balance) {
+            this.#balance -= amount;
+          }
+        }
+
+        getBalance() {
+          return this.#balance;
+        }
+      }
+
+      const account = new BankAccount("Alice", 1000);
+      account.deposit(500);
+      account.withdraw(200);
+      // console.log(account.#balance); // ❌ Error: Private field '#balance' must be declared in an enclosing class
+      console.log("Encapsulation - Balance:", account.getBalance()); // ✅ Output: 1300
+
+      // -------------------
+      // 2. Abstraction
+      // -------------------
+      // Abstraction means hiding complex implementation details and showing only essential features.
+
+      class Vehicle {
+        startEngine() {
+          // Abstracted complexity
+          console.log("Engine started.");
+        }
+
+        drive() {
+          console.log("Driving...");
+        }
+      }
+
+      const car = new Vehicle();
+      car.startEngine(); // Output: Engine started.
+      car.drive(); // Output: Driving...
+
+      // Abstraction hides how 'startEngine' works internally, just gives us clean interface.
+
+      // -------------------
+      // 3. Inheritance
+      // -------------------
+      // Inheritance allows a class (child) to inherit properties and methods from another class (parent).
+
+      class Animal {
+        constructor(name) {
+          this.name = name;
+        }
+
+        speak() {
+          console.log(`${this.name} makes a sound.`);
+        }
+      }
+
+      class Dog extends Animal {
+        speak() {
+          console.log(`${this.name} barks.`);
+        }
+      }
+
+      const genericAnimal = new Animal("Generic");
+      genericAnimal.speak(); // Output: Generic makes a sound.
+
+      const dog = new Dog("Buddy");
+      dog.speak(); // Output: Buddy barks.
+
+      // -------------------
+      // 4. Polymorphism
+      // -------------------
+      // Polymorphism allows objects of different classes to be treated as objects of a common superclass.
+      // Method overriding is a type of polymorphism.
+
+      const animals = [new Animal("Creature"), new Dog("Max")];
+
+      animals.forEach((animal) => {
+        animal.speak(); // Each object responds differently to the same method call
+      });
+
+      // Output:
+      // Creature makes a sound.
+      // Max barks.
+    </script>
+  </body>
+</html>
