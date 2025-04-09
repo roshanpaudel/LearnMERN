@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. `this` in the Global Scope
+      console.log("1. Global scope:", this);
+      // Browser: `window`
+      // Node.js: `{}` or `global` depending on context
+
+      // -------------------------------------------
+
+      // 2. `this` inside a regular function (non-strict mode)
+      function regularFunction() {
+        console.log("2. Regular function:", this);
+      }
+      regularFunction();
+      // Browser: window (or undefined in strict mode)
+
+      // -------------------------------------------
+
+      // 3. `this` inside an object method
+      const user = {
+        name: "Alice",
+        greet() {
+          console.log("3. Object method:", this.name);
+        },
+      };
+      user.greet();
+      // Output: Alice — `this` refers to the `user` object
+
+      // -------------------------------------------
+
+      // 4. `this` in an arrow function inside object
+      const person = {
+        name: "Bob",
+        greet: () => {
+          console.log("4. Arrow function method:", this.name);
+        },
+      };
+      person.greet();
+      // Output: undefined — `this` comes from outer scope (not the object)
+
+      // -------------------------------------------
+
+      // 5. `this` inside a constructor function
+      function Animal(type) {
+        this.type = type;
+        this.describe = function () {
+          console.log("5. Constructor function:", this.type);
+        };
+      }
+      const dog = new Animal("Dog");
+      dog.describe();
+      // Output: Dog — `this` refers to the new `dog` object
+
+      // -------------------------------------------
+
+      // 6. `this` in a class method
+      class Car {
+        constructor(model) {
+          this.model = model;
+        }
+        showModel() {
+          console.log("6. Class method:", this.model);
+        }
+      }
+      const myCar = new Car("Tesla");
+      myCar.showModel();
+      // Output: Tesla — `this` refers to the class instance
+
+      // -------------------------------------------
+
+      // 7. `this` with call(), apply(), and bind()
+      function sayHello() {
+        console.log("7. With call/apply/bind:", this.name);
+      }
+      const objA = { name: "Charlie" };
+      const objB = { name: "Daisy" };
+
+      sayHello.call(objA); // Output: Charlie
+      sayHello.apply(objB); // Output: Daisy
+
+      const boundFunc = sayHello.bind(objA);
+      boundFunc(); // Output: Charlie
+
+      // -------------------------------------------
+
+      // 8. `this` in event listeners (only works in browsers)
+      /*
+        document.querySelector("button").addEventListener("click", function () {
+        console.log("8. DOM handler:", this); // Refers to the button
+        });
+
+        document.querySelector("button").addEventListener("click", () => {
+        console.log("8. Arrow in DOM:", this); // Inherits `this` from outside, usually window
+        });
+        */
+
+      // -------------------------------------------
+
+      /*
+        ✅ OUTPUT SUMMARY (in console):
+
+        1. Global scope: [object Window] or {}
+        2. Regular function: [object Window] (or undefined in strict mode)
+        3. Object method: Alice
+        4. Arrow function method: undefined
+        5. Constructor function: Dog
+        6. Class method: Tesla
+        7. With call/apply/bind:
+        - Charlie
+        - Daisy
+        - Charlie
+        */
+    </script>
+  </body>
+</html>
