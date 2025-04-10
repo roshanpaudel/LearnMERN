@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // --- Imperative Approach (Before using Functional Programming) ---
+      console.log("Before (Imperative Approach):");
+
+      // A simple task list with an array of task objects.
+      let tasks = [
+        { id: 1, task: "Buy groceries", completed: false },
+        { id: 2, task: "Walk the dog", completed: true },
+        { id: 3, task: "Do laundry", completed: false },
+      ];
+
+      // Imperative approach: Looping through the tasks array and manually updating tasks.
+      let updatedTasks = []; // To store tasks with completed status set to true.
+
+      for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].completed) {
+          updatedTasks.push(tasks[i]); // Manually push completed tasks into the new array
+        }
+      }
+
+      // Update the task list with completed tasks
+      tasks = updatedTasks; // Mutate the original array and assign the filtered tasks
+
+      console.log(tasks); // Only completed tasks are left: [{ id: 2, task: 'Walk the dog', completed: true }]
+
+      // Issues with Imperative Approach:
+      // 1. **Mutation**: We're directly modifying the `tasks` array and using a `push` to update `updatedTasks`.
+      // 2. **Manual Iteration**: We use loops and conditional checks, which can become difficult to maintain as the logic grows.
+      // 3. **Harder to Extend**: Adding new features (e.g., toggling task completion) requires modifying the existing loop and logic.
+
+      // --- Functional Programming Approach (After using Functional Programming) ---
+      console.log("\nAfter (Functional Programming Approach):");
+
+      // Functional approach using higher-order functions and immutable operations.
+
+      const tasksFP = [
+        { id: 1, task: "Buy groceries", completed: false },
+        { id: 2, task: "Walk the dog", completed: true },
+        { id: 3, task: "Do laundry", completed: false },
+      ];
+
+      // Functional approach with `filter` (for immutability) and `map` (for transformations)
+
+      // 1. **Filter** the tasks to get only completed tasks (without mutating the original list).
+      const completedTasks = tasksFP.filter((task) => task.completed); // No mutation, returns a new array
+
+      // 2. **Map** over the completed tasks and format them.
+      const formattedCompletedTasks = completedTasks.map(
+        (task) => `${task.task} (completed)`
+      );
+
+      console.log(formattedCompletedTasks); // ["Walk the dog (completed)"]
+
+      // Functional Approach Improvements:
+      // 1. **Immutability**: We do not modify the original `tasksFP` array. Instead, we return new arrays using `filter` and `map`.
+      // 2. **Cleaner and more declarative**: Using `filter` and `map` allows us to describe what we want to do with the data (filter completed tasks and format them).
+      // 3. **Higher-order functions**: We used `filter` and `map` to create reusable functions that perform operations on the data without needing explicit loops.
+
+      // --- Example of Adding Task Completion Toggle ---
+      console.log(
+        "\nAdding Task Completion Toggle with Functional Programming:"
+      );
+
+      // In the imperative approach, toggling task completion would require mutating the task's `completed` property.
+      // In functional programming, we create a new updated task list instead of mutating the existing one.
+
+      // Function to toggle the completion of a task by `id`.
+      const toggleTaskCompletion = (tasks, taskId) => {
+        return tasks.map((task) =>
+          task.id === taskId ? { ...task, completed: !task.completed } : task
+        ); // Create a new task list with the completion status toggled for the matching task
+      };
+
+      // Toggle the completion of the task with id 1 (Buy groceries)
+      const updatedTasksFP = toggleTaskCompletion(tasksFP, 1);
+
+      console.log(updatedTasksFP);
+      // Output: [
+      //   { id: 1, task: 'Buy groceries', completed: true },
+      //   { id: 2, task: 'Walk the dog', completed: true },
+      //   { id: 3, task: 'Do laundry', completed: false }
+      // ]
+
+      // Improvements with Functional Programming:
+      // 1. **No Mutation**: We use `map` and spread syntax `{ ...task }` to create a new object with the updated completion status.
+      // 2. **Pure function**: The `toggleTaskCompletion` function is a pure function, which means it doesn't modify any external state. It simply returns a new list with the toggled tasks.
+      // 3. **Clear logic**: The logic is simple and declarative, which makes it easier to understand and extend.
+
+      // --- Recursion Example for Task Filtering (Alternative to Loops) ---
+      console.log("\nRecursion Example for Task Filtering:");
+
+      // Here, we'll use recursion to filter tasks (an alternative to using loops like in the imperative example).
+      const filterTasksRecursively = (
+        tasks,
+        predicate,
+        index = 0,
+        result = []
+      ) => {
+        if (index >= tasks.length) return result; // Base case: when index reaches the end of the array, return result array.
+
+        if (predicate(tasks[index])) {
+          result.push(tasks[index]); // If task passes the predicate, add it to the result.
+        }
+
+        // Recursive case: call the function again with the next index.
+        return filterTasksRecursively(tasks, predicate, index + 1, result);
+      };
+
+      // Recursively filter tasks to get only the completed ones.
+      const completedTasksRecursive = filterTasksRecursively(
+        tasksFP,
+        (task) => task.completed
+      );
+
+      console.log(completedTasksRecursive);
+      // Output: [{ id: 2, task: 'Walk the dog', completed: true }]
+
+      // Improvements with Recursion:
+      // 1. **Avoid Loops**: Recursion replaces traditional loops with self-calling functions, offering a more functional approach.
+      // 2. **Cleaner Logic**: The recursive function makes the filtering logic more declarative and functional, as it doesn't rely on mutable state or side effects.
+    </script>
+  </body>
+</html>
