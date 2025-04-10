@@ -90,7 +90,7 @@
       console.log("charAt[20]:", exampleString[20]); // Output: charAt[20]: A
       console.log("charAt(20):", exampleString.charAt(20)); // Output: charAt(20): A
       console.log("indexOf('e'):", exampleString.indexOf("e")); // Output: indexOf('e'): 4
-      console.log("lastIndexOf('there'):", exampleString.lastIndexOf("there")); // Output: lastIndexOf('there'): 3
+      console.log("lastIndexOf('there'):", exampleString.lastIndexOf("there")); // Output: lastIndexOf('there'): 3, the last "there"(which is also first in this case) starts at index 3
       console.log("replace:", exampleString.replace("Prem", "Sam")); // Output: replace: Hi there this is "Sam Acharya", and I live in Sydne!
       console.log("replaceAll:", exampleString.replaceAll("i", "u")); // Output: replaceAll: Hu there thus us "Prem Acharya", and U luve un Sydne!
       console.log("slice(3, 5):", exampleString.slice(3, 5)); // Output: slice(3, 5): th
@@ -98,7 +98,8 @@
       console.log("slice(-3, -2):", exampleString.slice(-3, -2)); // Output: slice(-3, -2): d
       console.log("substring(3, 5):", exampleString.substring(3, 5)); // Output: substring(3, 5): th
       console.log("includes('Prem'):", exampleString.includes("Prem")); // Output: includes('Prem'): true
-      console.log("search('Prsdem'):", exampleString.search("Prsdem")); // Output: search('Prsdem'): -1
+      console.log("search('Prsdem'):", exampleString.search("Prsdem")); // Output: search('Prsdem'): -1 (because "Prsdem" is not found in the string)
+      console.log("search('Prem'):", exampleString.search("Prem")); // Output: search('Prsdem'): 17 (which is the index of the first character of "Prem")
     </script>
   </body>
 </html>
