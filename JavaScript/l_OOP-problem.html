@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        
+      class Car {
+        constructor() {
+          this.engineOn = false;
+        }
+        engineStart() {
+          console.log("The engine is started");
+        }
+        engineStop() {
+          console.log("The engine is stopped");
+        }
+        engineDrive() {
+          console.log("The car is driving");
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
