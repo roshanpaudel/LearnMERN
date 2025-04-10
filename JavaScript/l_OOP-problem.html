@@ -8,19 +8,35 @@
   <body>
     <script>
       class Car {
-        constructor() {
+        constructor(car) {
           this.engineOn = false;
+          this.car = car;
         }
-        engineStart() {
-          console.log("The engine is started");
+        startEngine() {
+          if (!this.engineOn) {
+            console.log(`${this.car} engine is started`);
+            this.engineOn = true;
+          } else console.log(`${this.car} engine is already on`);
         }
-        engineStop() {
-          console.log("The engine is stopped");
+        stopEngine() {
+          if (this.engineOn) {
+            console.log(`${this.car} engine is stopped`);
+            this.engineOn = false;
+          } else console.log(`${this.car} engine is not running`);
         }
-        engineDrive() {
-          console.log("The car is driving");
+        Drive() {
+          if (this.engineOn) {
+            console.log(`${this.car}  car is driving`);
+          } else console.log(`${this.car} car has not been started`);
         }
       }
+
+      const myCar = new Car("Tesla");
+      myCar.startEngine();
+      myCar.Drive();
+      myCar.startEngine();
+      myCar.stopEngine();
+      myCar.Drive();
     </script>
   </body>
 </html>
