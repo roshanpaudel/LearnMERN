@@ -122,10 +122,107 @@
 
       console.log(completedTasksRecursive);
       // Output: [{ id: 2, task: 'Walk the dog', completed: true }]
+      /**
+       * Recursive function to calculate the factorial of a number.
+       * factorial(n) = n * factorial(n - 1)
+       * Example: factorial(5) = 5 * 4 * 3 * 2 * 1 = 120
+       */
+
+      function factorial(n) {
+        // Base case:
+        // This is the condition that stops the recursion.
+        // If n is 0 or 1, return 1. (Because 0! = 1 and 1! = 1)
+        if (n === 0 || n === 1) {
+          return 1;
+        }
+
+        // Recursive case:
+        // Call the same function with (n - 1).
+        // This breaks the problem down into smaller and smaller calls.
+        return n * factorial(n - 1);
+
+        /*
+    Here's how the recursion works when you call factorial(4):
+
+    factorial(4)
+    => 4 * factorial(3)
+    => 4 * (3 * factorial(2))
+    => 4 * (3 * (2 * factorial(1)))
+    => 4 * (3 * (2 * 1))    ← base case reached
+    => 4 * 3 * 2 * 1
+    => 24
+  */
+      }
+
+      // Example usage:
+      console.log(factorial(5)); // Output: 120
 
       // Improvements with Recursion:
       // 1. **Avoid Loops**: Recursion replaces traditional loops with self-calling functions, offering a more functional approach.
       // 2. **Cleaner Logic**: The recursive function makes the filtering logic more declarative and functional, as it doesn't rely on mutable state or side effects.
+
+      // --- First-Class Functions in JavaScript ---
+      // In JavaScript, functions are "first-class citizens", meaning:
+      // ✅ They can be assigned to variables
+      // ✅ They can be passed as arguments to other functions
+      // ✅ They can be returned from other functions
+
+      // Example 1: Assigning a function to a variable
+      const greet = function (name) {
+        return `Hello, ${name}!`;
+      };
+
+      console.log(greet("Alice")); // Output: Hello, Alice!
+
+      // Example 2: Passing a function as an argument
+      function saySomething(fn, value) {
+        console.log(fn(value));
+      }
+
+      saySomething(greet, "Bob"); // Output: Hello, Bob!
+
+      // Example 3: Returning a function from another function
+      function multiplier(factor) {
+        return function (number) {
+          return number * factor;
+        };
+      }
+
+      const double = multiplier(2);
+      console.log(double(5)); // Output: 10
+
+      // All of these demonstrate that functions in JavaScript are treated just like any other value (first-class).
+
+      // --- Example of a Higher-Order Function ---
+
+      // A Higher-Order Function is a function that takes another function as an argument (or returns one).
+
+      // Let's say we want to greet someone politely, but we want to customize the greeting style.
+
+      // Here's a basic function that prints a greeting:
+      function casualGreeting(name) {
+        return `Hey, ${name}!`;
+      }
+
+      function formalGreeting(name) {
+        return `Good day, ${name}.`;
+      }
+
+      // Now here's our HIGHER-ORDER FUNCTION:
+      function greetUser(name, greetingFunction) {
+        // We pass in a name AND another function that defines how we greet
+        console.log(greetingFunction(name));
+      }
+
+      // Using the higher-order function with different greetings
+      greetUser("Alice", casualGreeting); // Output: Hey, Alice!
+      greetUser("Bob", formalGreeting); // Output: Good day, Bob.
+
+      // 💡 Why is this helpful?
+      // - We can reuse `greetUser` with any greeting style.
+      // - We keep the greeting logic separate and flexible.
+
+      // ✅ This is a simple and powerful example of a Higher-Order Function in action!
     </script>
   </body>
 </html>
