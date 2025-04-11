@@ -11,61 +11,64 @@
       // 1. ENCAPSULATION — Keep data private & secure
       // ============================================
       class BankAccount {
-        #balance = 0; // Private field using #
+        #balance = 0; // Private field: Encapsulation hides direct external access.
 
         constructor(owner) {
-          this.owner = owner; // Public property
+          this.owner = owner; // Public property.
         }
 
         deposit(amount) {
-          if (amount > 0) this.#balance += amount;
+          if (amount > 0) this.#balance += amount; // Controlled modification of #balance.
         }
 
         withdraw(amount) {
-          if (amount <= this.#balance) {
-            this.#balance -= amount;
-          } else {
-            console.log("Insufficient funds");
-          }
+          if (amount <= this.#balance) this.#balance -= amount; // Controlled modification.
         }
 
         getBalance() {
-          return this.#balance;
+          return this.#balance; // Controlled read access to #balance.
         }
       }
 
       const account = new BankAccount("Alice");
       account.deposit(500);
       account.withdraw(200);
-      console.log("1. Encapsulation - Balance:", account.getBalance());
-      // Output: 300
-      // account.#balance; // ❌ Error: private field is not accessible outside
+      console.log("Balance:", account.getBalance()); // Output: Balance: 300
+      // account.#balance; // Error: Cannot access private field outside the class.
+
+      // Encapsulation: The private field '#balance' ensures that the account's balance
+      // can only be accessed and modified through the public methods of the BankAccount
+      // class (deposit, withdraw, getBalance). This protects the internal state of the
+      // object from direct, uncontrolled external manipulation.
 
       // ============================================
       // 2. ABSTRACTION — Hide internal complexity
       // ============================================
       class CoffeeMachine {
         constructor() {
-          this.waterLevel = 0;
+          this.waterLevel = 0; // Internal state: water level.
         }
 
         addWater(amount) {
-          this.waterLevel += amount;
+          this.waterLevel += amount; // Simple interface to modify water level.
         }
 
         makeCoffee() {
           if (this.waterLevel >= 1) {
-            this.#heatWater();
-            console.log("2. Abstraction - ☕ Coffee is ready");
-            this.waterLevel -= 1;
+            this.#heatWater(); // Internal, complex step hidden.
+            console.log("2. Abstraction -  Coffee is ready"); // User-friendly output.
+            this.waterLevel -= 1; // Updates internal state.
           } else {
-            console.log("Add water first!");
+            console.log("Add water first!"); // Simple feedback to the user.
           }
         }
 
-        // Hidden internal logic (abstraction)
+        // #heatWater() is a private method: Its complex implementation details
+        // are hidden from the user. The user only knows that calling makeCoffee()
+        // results in heated water as a necessary step.
         #heatWater() {
           console.log("Heating water...");
+          // Imagine complex logic here involving timers, temperature sensors, etc.
         }
       }
 
@@ -74,7 +77,14 @@
       myMachine.makeCoffee();
       // Output:
       // Heating water...
-      // 2. Abstraction - ☕ Coffee is ready
+      // 2. Abstraction -  Coffee is ready
+
+      // Abstraction:
+      // This code uses abstraction by hiding the internal logic (like #heatWater()) from the user.
+      // The user only interacts with simple methods like addWater() and makeCoffee(),
+      // without needing to understand how coffee is made internally.
+      // The private #heatWater() method keeps the complex process encapsulated,
+      // allowing internal changes without affecting the public interface.
 
       // ============================================
       // 3. INHERITANCE — Child class gets from parent
