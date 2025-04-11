@@ -40,6 +40,7 @@
       console.log(extendedUser4); // Output: { name: "David", age: 40, city: "Los Angeles" }
 
       // 5. Shallow Copy vs Deep Copy
+      // Shallow copy creates a new object, but nested objects are shared by reference.
       const user5 = {
         name: "Eve",
         address: {
@@ -47,11 +48,17 @@
           zip: 94107,
         },
       };
-
-      // Shallow copy
       const shallowCopy5 = { ...user5 };
+
+      // Changing primitive property (name) in copy doesn't affect original.
+      shallowCopy5.name = "Evelyn";
+      console.log("Original name:", user5.name); // Output: Original name: Eve
+      console.log("Copy name:", shallowCopy5.name); // Output: Copy name: Evelyn
+
+      // Changing nested object property (city) in copy *does* affect original.
       shallowCopy5.address.city = "Los Angeles";
-      console.log(user5.address.city); // Output: Los Angeles
+      console.log("Original city:", user5.address.city); // Output: Original city: Los Angeles
+      console.log("Copy city:", shallowCopy5.address.city); // Output: Copy city: Los Angeles
 
       // Deep copy
       const deepCopy5 = JSON.parse(JSON.stringify(user5));
@@ -69,34 +76,33 @@
       // age: 29
       // profession: Artist
 
-       // Object -Array Conversion
-       // Define an object
-    const user = {
-      name: "Alice",
-      age: 25,
-      city: "Sydney"
-    };
-   
-    // 1. Convert object to array of keys
-    const keys = Object.keys(user); // Extracts keys as an array
-    console.log("Keys:", keys);     // Output: ["name", "age", "city"]
+      // Object -Array Conversion
+      // Define an object
+      const user = {
+        name: "Alice",
+        age: 25,
+        city: "Sydney",
+      };
 
-    // 2. Convert object to array of values
-    const values = Object.values(user); // Extracts values as an array
-    console.log("Values:", values);     // Output: ["Alice", 25, "Sydney"]
+      // 1. Convert object to array of keys
+      const keys = Object.keys(user); // Extracts keys as an array
+      console.log("Keys:", keys); // Output: ["name", "age", "city"]
 
-    // 3. Convert object to array of key-value pairs
-    const entries = Object.entries(user); // Converts object to array of [key, value] pairs
-    console.log("Entries:", entries);
-    // Output: [["name", "Alice"], ["age", 25], ["city", "Sydney"]]
+      // 2. Convert object to array of values
+      const values = Object.values(user); // Extracts values as an array
+      console.log("Values:", values); // Output: ["Alice", 25, "Sydney"]
 
-    // 4. Convert entries back to object
-    const reconstructed = Object.fromEntries(entries); // Converts array of entries back to an object
-    console.log("Reconstructed Object:", reconstructed);
-    // Output: { name: "Alice", age: 25, city: "Sydney" }
+      // 3. Convert object to array of key-value pairs
+      const entries = Object.entries(user); // Converts object to array of [key, value] pairs
+      console.log("Entries:", entries);
+      // Output: [["name", "Alice"], ["age", 25], ["city", "Sydney"]]
 
-    // These methods are useful for transforming, filtering, or iterating over objects like arrays.
-  </script>
+      // 4. Convert entries back to object
+      const reconstructed = Object.fromEntries(entries); // Converts array of entries back to an object
+      console.log("Reconstructed Object:", reconstructed);
+      // Output: { name: "Alice", age: 25, city: "Sydney" }
+
+      // These methods are useful for transforming, filtering, or iterating over objects like arrays.
     </script>
   </body>
 </html>
