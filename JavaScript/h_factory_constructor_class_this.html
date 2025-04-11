@@ -32,7 +32,7 @@
       console.log(car.getDescription()); // Output: This is a red car.
       console.log(truck.getDescription()); // Output: This is a blue truck.
 
-      // Constructor Function:
+      // Constructor Function (Pre-ES6 |  ES6 added constructor class: explained below)
       // Explanation: A constructor function is a function used with the 'new' keyword to create objects.
       // Significance:
       //   - Establishes a pattern for creating objects of a specific type.
@@ -54,6 +54,26 @@
       console.log(dog.speak()); // Output: The dog, Buddy, makes a sound.
       console.log(cat.name); // Output: Whiskers
 
+      // ES6 Class Constructor with multiple properties and a method:
+      class Animal {
+        // Constructor: Initializes object properties ('this.name', 'this.species') upon 'new Animal()' creation.
+        constructor(name, species) {
+          this.name = name;
+          this.species = species;
+        }
+
+        // 'speak' method accesses object properties using 'this'.
+        speak() {
+          return `The ${this.species}, ${this.name}, makes a sound.`;
+        }
+      }
+
+      const dog = new Animal("Buddy", "dog"); // Constructor called.
+      const cat = new Animal("Whiskers", "cat"); // Constructor called.
+
+      console.log(dog.speak()); // Output: The dog, Buddy, makes a sound.
+      console.log(cat.name); // Output: Whiskers
+
       // Class-based OOP:
       // Explanation: Introduced in ES6, classes provide a more structured and concise way to create objects and implement inheritance.
       // Significance:
@@ -63,21 +83,29 @@
       //   - Aligns JavaScript more closely with other object-oriented languages.
 
       class Shape {
+        // Shape is a base class, defining common properties for all shapes.
         constructor(color) {
+          // All Shape objects will have a 'color' property, initialized here.
           this.color = color;
         }
 
+        // A common method that all Shape objects (and their subclasses) can use.
         getColor() {
           return this.color;
         }
       }
 
       class Circle extends Shape {
+        // Circle is a subclass that inherits from Shape.
         constructor(color, radius) {
+          // 'super(color)' calls the constructor of the Shape class,
+          // ensuring the 'color' property is initialized for the Circle.
           super(color);
+          // Circle-specific property: 'radius'.
           this.radius = radius;
         }
 
+        // A method specific to Circle objects, using its 'radius'.
         getArea() {
           return Math.PI * this.radius * this.radius;
         }
@@ -85,8 +113,16 @@
 
       const myCircle = new Circle("green", 5);
 
-      console.log(myCircle.getColor()); // Output: green
-      console.log(myCircle.getArea()); // Output: 78.53981633974483
+      console.log(myCircle.getColor()); // Output: green (inherited from Shape)
+      console.log(myCircle.getArea()); // Output: 78.53981633974483 (specific to Circle)
+
+      // Significance of Shape:
+      // 1. Base Class: Provides a common structure and properties for related classes (like Circle).
+      // 2. Inheritance: Allows subclasses (Circle) to inherit properties (color) and methods (getColor()).
+      // 3. Code Reusability: The getColor() method is defined once in Shape and reused by Circle.
+      // 4. Abstraction: Represents a general concept of a shape, focusing on shared characteristics.
+      // 5. Foundation for Polymorphism (potential): Enables treating different shapes uniformly through the Shape interface.
+      
 
       // "this" keyword:
       // Explanation: The 'this' keyword refers to the object that is currently executing the function.
