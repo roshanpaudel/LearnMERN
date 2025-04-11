@@ -63,6 +63,7 @@
       outer(); // Output: I'm outside!
 
       // 6. Hoisting
+
       hoistedFunction(); // Works due to hoisting
 
       function hoistedFunction() {
@@ -72,6 +73,16 @@
       // Variable hoisting (undefined, not initialized)
       console.log(hoistedVar); // Output: undefined
       var hoistedVar = "I'm hoisted";
+
+      // Hoisted:
+      // - Variable declarations (using var)
+      // - Function declarations
+      // - Class declarations (with Temporal Dead Zone behavior)
+
+      // Not Hoisted (or have limited/different hoisting behavior):
+      // - Variable declarations (using let and const) - hoisted but not initialized (Temporal Dead Zone)
+      // - Anonymous function expressions
+      // - Arrow function expressions
 
       // 7. Closure
       function makeCounter() {
