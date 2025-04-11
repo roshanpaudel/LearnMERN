@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Check console</h1>
+    <script>
+      // 1. **After variable declarations (var, let, const)**
+      let x = 10; // semicolon is required here to terminate the statement
+      const name = "Alice"; // semicolon is required here as well
+
+      // 2. **After function expressions (in case of anonymous functions or function assignments)**
+      const greet = function () {
+        console.log("Hello!");
+      }; // semicolon is required after function expression
+
+      // 3. **After class declarations**
+      class Person {
+        constructor(name) {
+          this.name = name;
+        }
+      } // semicolon is required here because class declarations are treated as expressions in JavaScript
+
+      // 4. **In return statements with expressions**
+      function add(a, b) {
+        return a + b; // semicolon is required to terminate the return statement
+      }
+
+      // 5. **In for-loops (for-loop declarations)**
+      for (let i = 0; i < 5; i++) {
+        console.log(i); // semicolon is required after the loop statement if it's part of a single-line block
+      }
+
+      // 6. **In object literals**
+      const person = {
+        name: "John",
+        age: 30,
+      }; // semicolon is required after object literal assignment
+
+      // 7. **After increment (++) or decrement (--) operators**
+      let counter = 0;
+      counter++; // semicolon required after increment statement
+      counter--; // semicolon required after decrement statement
+
+      // 8. **In the case of a multiple statement line (separating them with semicolons)**
+      let a = 10;
+      let b = 20;
+      let sum = a + b; // semicolons are required between statements on the same line
+
+      // 9. **After a `throw` statement (when throwing errors)**
+      function throwError() {
+        throw new Error("Something went wrong"); // semicolon is required after throw statement
+      }
+
+      // 10. **After function declarations in expressions (if assigned to variables)**
+      const multiply = function (x, y) {
+        return x * y;
+      }; // semicolon is required after function declaration in an expression
+    </script>
+  </body>
+</html>
