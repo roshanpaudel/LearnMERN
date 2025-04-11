@@ -7,6 +7,27 @@
   </head>
   <body>
     <script>
+      // --- Closure Example in JavaScript ---
+
+      // This is our outer function
+      function outer() {
+        // 'secret' is a local variable inside 'outer'
+        const secret = "🌟 I am a secret";
+
+        // We return an inner function that uses 'secret'
+        return function inner() {
+          // Even though 'outer' is finished, 'inner' can still access 'secret'
+          console.log(secret);
+        };
+      }
+
+      // We call 'outer()' and store the returned 'inner' function in 'reveal'
+      const reveal = outer();
+
+      // Now we call 'reveal()', which is the inner function
+      // It still has access to 'secret' because of closure
+      reveal(); // Output: 🌟 I am a secret
+
       // Parent Class Abstraction using 'throw new Error'
 
       // Example BEFORE implementing abstraction with 'throw new Error'
