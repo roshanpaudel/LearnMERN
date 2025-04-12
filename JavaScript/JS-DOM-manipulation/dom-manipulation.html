@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript DOM Manipulation</title>
+    <style>
+      .highlight {
+        background-color: yellow;
+      }
+      .active-header {
+        border: 2px solid green;
+      }
+      .list-item {
+        margin: 5px 0;
+      }
+      #text-example {
+        display: none; /* used for innerText demonstration */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="main-title">Original Title</h1>
+    </header>
+
+    <section class="container">
+      <div id="content">
+        <p>This is a paragraph inside content.</p>
+        <p>Another paragraph inside content.</p>
+      </div>
+
+      <ul>
+        <li class="list-item">Item 1</li>
+        <li class="list-item">Item 2</li>
+        <li class="list-item">Item 3</li>
+      </ul>
+
+      <div id="text-example">This is hidden and used with innerText</div>
+
+      <div id="remove-me">This will be removed</div>
+      <div id="replace-me">This will be replaced</div>
+      <div id="reference">I am the reference element</div>
+
+      <a href="#">Click Me</a>
+      <br /><br />
+
+      <button class="submit-btn">Submit</button>
+    </section>
+
+    <script>
+      /**********************
+       * 1. ELEMENT SELECTION
+       **********************/
+      const title = document.getElementById("main-title");
+      const items = document.getElementsByClassName("list-item");
+      const paragraphs = document.getElementsByTagName("p");
+      const button = document.querySelector(".submit-btn");
+      const allListItems = document.querySelectorAll(".list-item");
+      const closestSection = button.closest("section");
+      const parentOfTitle = title.parentNode;
+
+      /****************************
+       * 2. CONTENT & TEXT CHANGES
+       ****************************/
+      title.textContent = "Welcome to JavaScript DOM Manipulation";
+      const container = document.getElementById("content");
+      container.innerHTML =
+        "<h2>New Heading</h2><p>With new paragraph content</p>";
+      const innerTextExample = document.getElementById("text-example");
+      innerTextExample.innerText =
+        "This is innerText and respects CSS visibility";
+      const newTextNode = document.createTextNode("This is a text node");
+      container.appendChild(newTextNode);
+
+      /***************************
+       * 3. STYLING MANIPULATION
+       ***************************/
+      items[0].style.color = "blue";
+      allListItems.forEach((item) => {
+        item.style.fontWeight = "bold";
+      });
+      const header = document.querySelector("header");
+      header.style.backgroundColor = "lightgray";
+      header.style.padding = "10px";
+
+      /*************************
+       * 4. CLASS MANIPULATION
+       *************************/
+      header.classList.add("highlight");
+      header.classList.remove("highlight");
+      header.classList.toggle("active-header");
+      const hasClass = header.classList.contains("highlight");
+      console.log(hasClass);
+
+      /******************************
+       * 5. ATTRIBUTE MANIPULATION
+       ******************************/
+      const link = document.querySelector("a");
+      link.setAttribute("href", "https://www.example.com");
+      link.setAttribute("target", "_blank");
+      const linkHref = link.getAttribute("href");
+      console.log("Link points to:", linkHref);
+      link.removeAttribute("target");
+
+      /****************************
+       * 6. CREATING NEW ELEMENTS
+       ****************************/
+      const newDiv = document.createElement("div");
+      newDiv.setAttribute("id", "new-box");
+      newDiv.textContent = "This is a dynamically created div";
+      document.body.appendChild(newDiv);
+      const anotherText = document.createTextNode("Appended plain text");
+      newDiv.appendChild(anotherText);
+      const clonedDiv = newDiv.cloneNode(true);
+      document.body.appendChild(clonedDiv);
+
+      /**************************************
+       * 7. INSERTING, REMOVING, REPLACING
+       **************************************/
+      const referenceNode = document.getElementById("reference");
+      const insertDiv = document.createElement("div");
+      insertDiv.textContent = "Inserted before reference element";
+      document.body.insertBefore(insertDiv, referenceNode);
+      const parentElement = document.getElementById("content");
+      const childToRemove = document.getElementById("remove-me");
+      if (childToRemove) {
+        parentElement.removeChild(childToRemove);
+      }
+      const toReplace = document.getElementById("replace-me");
+      const replacement = document.createElement("p");
+      replacement.textContent = "This paragraph replaces another element";
+      if (toReplace) {
+        parentElement.replaceChild(replacement, toReplace);
+      }
+      const isContained = container.contains(newTextNode);
+      console.log("Text node is in container:", isContained);
+
+      /*******************************
+       * 8. EVENT HANDLING (BASICS)
+       *******************************/
+      button.addEventListener("click", function () {
+        alert("Button was clicked!");
+      });
+
+      function logClick() {
+        console.log("Clicked!");
+      }
+      button.addEventListener("click", logClick);
+      button.removeEventListener("click", logClick);
+    </script>
+  </body>
+</html>
