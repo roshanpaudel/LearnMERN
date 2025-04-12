@@ -2,21 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>DOM Manipulation Demo</title>
+    <title>DOM Manipulation Visual Demo</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         padding: 20px;
       }
 
-      header {
+      .section {
+        border: 1px solid #ccc;
+        padding: 20px;
         margin-bottom: 20px;
       }
 
-      .container {
-        border: 1px solid #ccc;
-        padding: 15px;
-        margin-bottom: 20px;
+      #main-title {
+        font-size: 24px;
+        margin-bottom: 10px;
       }
 
       .highlight {
@@ -27,11 +28,7 @@
         border: 2px solid green;
       }
 
-      ul {
-        margin-top: 15px;
-      }
-
-      li.list-item {
+      .list-item {
         margin-bottom: 5px;
       }
 
@@ -39,69 +36,146 @@
         display: none;
       }
 
-      #new-box {
-        margin-top: 10px;
-        background: #e0f7fa;
-        padding: 10px;
-      }
-
-      #reference {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #f0f0f0;
-      }
-
-      a {
-        display: block;
-        margin-top: 15px;
-      }
-
-      button.submit-btn {
-        margin-top: 10px;
-        padding: 10px 20px;
+      .btn {
+        margin: 5px;
+        padding: 5px 10px;
         cursor: pointer;
-      }
-
-      h2 {
-        color: teal;
       }
     </style>
   </head>
   <body>
-    <!-- Header for selection and styling -->
-    <header>
-      <h1 id="main-title">Original Page Title</h1>
-    </header>
-
-    <!-- Main container for multiple manipulations -->
-    <div class="container" id="content">
-      <p>This is the first paragraph.</p>
-      <p>This is the second paragraph.</p>
-
-      <!-- This will be removed using JS -->
-      <div id="remove-me">This div will be removed</div>
-
-      <!-- This will be replaced using JS -->
-      <div id="replace-me">This div will be replaced</div>
+    <div class="section">
+      <h1 id="main-title">Original Title</h1>
+      <button class="btn" onclick="changeTitleText()">Change Title Text</button>
+      <button class="btn" onclick="toggleHighlight()">Toggle Highlight</button>
+      <button class="btn" onclick="toggleActiveClass()">
+        Toggle Active Class
+      </button>
     </div>
 
-    <!-- This is hidden initially, used with innerText -->
-    <div id="text-example">This is hidden text</div>
+    <div class="section" id="content">
+      <p>This is the first paragraph.</p>
+      <p>This is the second paragraph.</p>
+      <div id="remove-me">Remove Me</div>
+      <div id="replace-me">Replace Me</div>
+      <button class="btn" onclick="updateInnerHTML()">Set Inner HTML</button>
+      <button class="btn" onclick="appendTextNode()">Append Text Node</button>
+      <button class="btn" onclick="removeElement()">Remove Child</button>
+      <button class="btn" onclick="replaceElement()">Replace Child</button>
+    </div>
 
-    <!-- List items for selection and styling -->
-    <ul>
-      <li class="list-item">List Item 1</li>
-      <li class="list-item">List Item 2</li>
-      <li class="list-item">List Item 3</li>
-    </ul>
+    <div class="section">
+      <ul>
+        <li class="list-item">Item 1</li>
+        <li class="list-item">Item 2</li>
+        <li class="list-item">Item 3</li>
+      </ul>
+      <button class="btn" onclick="styleListItems()">Bold List Items</button>
+    </div>
 
-    <!-- Reference element for inserting before -->
-    <div id="reference">This is the reference element</div>
+    <div class="section">
+      <a id="main-link" href="#">Link</a>
+      <button class="btn" onclick="setAttributes()">Set Link Attributes</button>
+      <button class="btn" onclick="removeAttributes()">
+        Remove Target Attribute
+      </button>
+      <p>Inspect Element in browser to see changes</p>
+    </div>
 
-    <!-- Anchor element for attribute manipulation -->
-    <a href="#" id="main-link">Go somewhere</a>
+    <div class="section">
+      <button class="btn" onclick="createNewElement()">
+        Create New Element
+      </button>
+      <button class="btn" onclick="cloneElement()">Clone New Element</button>
+      <div id="reference">Reference Element</div>
+      <button class="btn" onclick="insertBeforeReference()">
+        Insert Before Reference
+      </button>
+    </div>
 
-    <!-- Button for querySelector and events -->
-    <button class="submit-btn">Submit</button>
+    <script>
+      const title = document.getElementById("main-title");
+      const header = document.querySelector("h1");
+      const container = document.getElementById("content");
+      const link = document.getElementById("main-link");
+
+      function changeTitleText() {
+        title.textContent = "Updated Title with JavaScript";
+      }
+
+      function toggleHighlight() {
+        header.classList.toggle("highlight");
+      }
+
+      function toggleActiveClass() {
+        header.classList.toggle("active-header");
+      }
+
+      function updateInnerHTML() {
+        container.innerHTML +=
+          "<h3>Added Heading</h3><p>New paragraph added.</p>";
+      }
+
+      function appendTextNode() {
+        const newText = document.createTextNode("Appended plain text. ");
+        container.appendChild(newText);
+      }
+
+      function removeElement() {
+        const toRemove = document.getElementById("remove-me");
+        if (toRemove) container.removeChild(toRemove);
+      }
+
+      function replaceElement() {
+        const toReplace = document.getElementById("replace-me");
+        const replacement = document.createElement("p");
+        replacement.textContent = "Replacement Paragraph.";
+        if (toReplace) container.replaceChild(replacement, toReplace);
+      }
+
+      function styleListItems() {
+        const items = document.querySelectorAll(".list-item");
+        items.forEach((item) => {
+          item.style.fontWeight = "bold";
+          item.style.color = "blue";
+        });
+      }
+
+      function setAttributes() {
+        link.setAttribute("href", "https://example.com");
+        link.setAttribute("target", "_blank");
+      }
+
+      function removeAttributes() {
+        link.removeAttribute("target");
+      }
+
+      function createNewElement() {
+        const newDiv = document.createElement("div");
+        newDiv.id = "new-box";
+        newDiv.textContent = "This is a new box!";
+        document.body.appendChild(newDiv);
+      }
+
+      function cloneElement() {
+        const original = document.getElementById("new-box");
+        if (original) {
+          const clone = original.cloneNode(true);
+          document.body.appendChild(clone);
+        }
+      }
+
+      // FIXED: Insert Before Reference Element
+      function insertBeforeReference() {
+        const ref = document.getElementById("reference");
+        const insertDiv = document.createElement("div");
+        insertDiv.textContent = "Inserted before reference";
+
+        // Insert the new element before the reference element's parent node
+        if (ref && ref.parentNode) {
+          ref.parentNode.insertBefore(insertDiv, ref);
+        }
+      }
+    </script>
   </body>
 </html>
