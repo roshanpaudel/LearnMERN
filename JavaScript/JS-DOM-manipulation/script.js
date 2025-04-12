@@ -3,145 +3,174 @@
  **********************/
 // Select by ID
 const title = document.getElementById("main-title");
+// Example Output: <h1 id="main-title">...</h1>
 
-// Select by class name (returns live HTMLCollection)
+// Select by class name
 const items = document.getElementsByClassName("list-item");
+// Example Output: HTMLCollection(3) [li.list-item, li.list-item, li.list-item]
 
-// Select by tag name (returns live HTMLCollection)
+// Select by tag name
 const paragraphs = document.getElementsByTagName("p");
+// Example Output: HTMLCollection(2) [p, p]
 
-// Select using querySelector (CSS-style - returns first match)
+// Select using querySelector
 const button = document.querySelector(".submit-btn");
+// Example Output: <button class="submit-btn">Submit</button>
 
-// Select all matching elements (returns static NodeList)
+// Select all matching elements
 const allListItems = document.querySelectorAll(".list-item");
+// Example Output: NodeList(3) [li.list-item, li.list-item, li.list-item]
 
-// Get the closest ancestor that matches a selector
+// Get the closest matching ancestor
 const closestSection = button.closest("section");
+// Example Output: <section>...</section>
 
-// Access parent node of an element
+// Get parent node
 const parentOfTitle = title.parentNode;
+// Example Output: <div class="container">...</div>
 
 /****************************
  * 2. CONTENT & TEXT CHANGES
  ****************************/
-// Change plain text content (ignores HTML)
+// Set plain text
 title.textContent = "Welcome to JavaScript DOM Manipulation";
+// Result: <h1 id="main-title">Welcome to JavaScript DOM Manipulation</h1>
 
-// Modify HTML content (can include tags)
+// Set innerHTML (includes tags)
 const container = document.getElementById("content");
 container.innerHTML = "<h2>New Heading</h2><p>With new paragraph content</p>";
+// Result: container will now have a new <h2> and <p> inside
 
-// innerText: sets or gets **rendered** text (respects CSS like display: none)
+// innerText (respects CSS visibility)
 const innerTextExample = document.getElementById("text-example");
 innerTextExample.innerText = "This is innerText and respects CSS visibility";
+// Result: If the element is hidden with display:none, this won't be visible or accessible
 
-// Create and append a text node
+// Append text node
 const newTextNode = document.createTextNode("This is a text node");
 container.appendChild(newTextNode);
+// Result: Adds plain text at the end of the container
 
 /***************************
  * 3. STYLING MANIPULATION
  ***************************/
-// Direct style change
+// Change text color
 items[0].style.color = "blue";
+// Result: First list item becomes blue
 
-// Apply styles in a loop
+// Apply bold to all list items
 allListItems.forEach((item) => {
   item.style.fontWeight = "bold";
 });
+// Result: All list items become bold
 
-// Change multiple styles
-const header = document.querySelector("header");
+// Style header
 header.style.backgroundColor = "lightgray";
 header.style.padding = "10px";
+// Result: Header has light gray background and padding
 
 /*************************
  * 4. CLASS MANIPULATION
  *************************/
-// Add a class
+// Add class
 header.classList.add("highlight");
+// Result: header has class 'highlight'
 
-// Remove a class
+// Remove class
 header.classList.remove("highlight");
+// Result: header no longer has class 'highlight'
 
-// Toggle a class (add if not present, remove if present)
+// Toggle class
 header.classList.toggle("active-header");
+// Result: Adds or removes 'active-header'
 
-// Check if an element has a specific class
+// Check for class
 const hasClass = header.classList.contains("highlight");
+console.log(hasClass);
+// Output: false (since we just removed it)
 
 /******************************
  * 5. ATTRIBUTE MANIPULATION
  ******************************/
-// Set or change attributes
-const link = document.querySelector("a");
+// Set attributes
 link.setAttribute("href", "https://www.example.com");
 link.setAttribute("target", "_blank");
+// Result: <a href="https://www.example.com" target="_blank"></a>
 
-// Get attribute value
+// Get attribute
 const linkHref = link.getAttribute("href");
 console.log("Link points to:", linkHref);
+// Output: "Link points to: https://www.example.com"
 
-// Remove an attribute
+// Remove attribute
 link.removeAttribute("target");
+// Result: <a href="https://www.example.com"></a>
 
 /****************************
  * 6. CREATING NEW ELEMENTS
  ****************************/
-// Create an element
+// Create and add element
 const newDiv = document.createElement("div");
 newDiv.setAttribute("id", "new-box");
 newDiv.textContent = "This is a dynamically created div";
 document.body.appendChild(newDiv);
+// Result: <div id="new-box">This is a dynamically created div</div> appears at end of body
 
-// Create and append a text node
+// Add a text node
 const anotherText = document.createTextNode("Appended plain text");
 newDiv.appendChild(anotherText);
+// Result: Appends plain text to the newDiv
 
-// Clone an element (true = deep clone with children)
+// Clone an element
 const clonedDiv = newDiv.cloneNode(true);
 document.body.appendChild(clonedDiv);
+// Result: Duplicate of newDiv appears in body
 
 /**************************************
  * 7. INSERTING, REMOVING, REPLACING
  **************************************/
-// Insert before a reference node
+// Insert before another element
 const referenceNode = document.getElementById("reference");
 const insertDiv = document.createElement("div");
 insertDiv.textContent = "Inserted before reference element";
 document.body.insertBefore(insertDiv, referenceNode);
+// Result: <div>Inserted before reference element</div> appears before #reference
 
-// Remove a child element
+// Remove a child
 const parentElement = document.getElementById("content");
 const childToRemove = document.getElementById("remove-me");
 if (childToRemove) {
   parentElement.removeChild(childToRemove);
 }
+// Result: Element with ID 'remove-me' is deleted from DOM
 
-// Replace a child element
+// Replace a child
 const toReplace = document.getElementById("replace-me");
 const replacement = document.createElement("p");
 replacement.textContent = "This paragraph replaces another element";
 if (toReplace) {
   parentElement.replaceChild(replacement, toReplace);
 }
+// Result: Replaces #replace-me with the new paragraph
 
-// Check if one element contains another
+// Check if container has the text node
 const isContained = container.contains(newTextNode);
 console.log("Text node is in container:", isContained);
+// Output: true
 
 /*******************************
  * 8. EVENT HANDLING (BASICS)
  *******************************/
-// Add a click event listener
+// Click event
 button.addEventListener("click", function () {
   alert("Button was clicked!");
 });
+// Result: Shows alert when button is clicked
 
-// Remove an event listener
+// Add and remove event
 function logClick() {
   console.log("Clicked!");
 }
 button.addEventListener("click", logClick);
 button.removeEventListener("click", logClick);
+// Result: Second event is attached and then removed; no log will appear
