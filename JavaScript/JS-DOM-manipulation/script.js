@@ -28,6 +28,29 @@ const closestSection = button.closest("section");
 // Get parent node
 const parentOfTitle = title.parentNode;
 // Example Output: <div class="container">...</div>
+// Select elements with a specific attribute.
+const elementsWithAttr = document.querySelectorAll("[data-id]");
+
+/****************************
+ * SELCETS ATTRIBUTES
+ ****************************/
+
+// Select elements with an attribute equal to a value.
+const activeButtons = document.querySelectorAll('button[data-status="active"]');
+
+// Select elements with an attribute containing a substring.
+const linksWithExample = document.querySelectorAll('a[href*="example.com"]');
+
+// Select elements with an attribute starting with a string.
+const imageThumbnails = document.querySelectorAll('img[src^="/thumbnails/"]');
+
+// Select elements with an attribute ending with a string.
+const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+
+// Combine attribute selectors with tag/class.
+const importantActiveDivs = document.querySelectorAll(
+  'div.important[data-status="active"]'
+);
 
 /****************************
  * 2. CONTENT & TEXT CHANGES
