@@ -231,8 +231,8 @@ button.addEventListener("click", function () {
 /** 1. element.addEventListener(event, handler)
  * Attaches a function to run when a specific event occurs (modern & flexible)
  */
-const button = document.getElementById("myButton");
-button.addEventListener("click", () => {
+const button_b = document.getElementById("myButton");
+button_b.addEventListener("click", () => {
   console.log("Button clicked!");
 });
 
