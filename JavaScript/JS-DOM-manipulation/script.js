@@ -226,10 +226,91 @@ button.addEventListener("click", function () {
 });
 // Result: Shows alert when button is clicked
 
-// Add and remove event
-function logClick() {
+// 1. element.addEventListener(event, handler)
+// Attaches a function to run when a specific event occurs
+const button_b = document.getElementById("myButton");
+button.addEventListener("click", () => {
+  console.log("Button clicked!");
+});
+// Output: Logs "Button clicked!" when the button is clicked
+
+// 2. element.removeEventListener(event, handler)
+// Removes a previously attached event listener
+function handleClick() {
   console.log("Clicked!");
 }
-button.addEventListener("click", logClick);
-button.removeEventListener("click", logClick);
-// Result: Second event is attached and then removed; no log will appear
+button.addEventListener("click", handleClick);
+button.removeEventListener("click", handleClick);
+// Output: Clicking the button does nothing, as the listener is removed
+
+// 3. event.preventDefault()
+// Prevents default browser behavior (e.g., following a link)
+const link = document.getElementById("myLink");
+link.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("Default link behavior prevented.");
+});
+// Output: The link won't navigate; just logs the message
+
+// 4. event.stopPropagation()
+// Stops the event from bubbling up to parent elements
+document.getElementById("outer").addEventListener("click", () => {
+  console.log("Outer clicked");
+});
+document.getElementById("inner").addEventListener("click", (e) => {
+  e.stopPropagation();
+  console.log("Inner clicked");
+});
+// Output: Clicking #inner only logs "Inner clicked", not "Outer clicked"
+
+// 5. event.stopImmediatePropagation()
+// Stops other listeners on the same element from running
+button.addEventListener("click", (e) => {
+  e.stopImmediatePropagation();
+  console.log("First listener");
+});
+button.addEventListener("click", () => {
+  console.log("Second listener");
+});
+// Output: Only "First listener" is logged
+
+// 6. element.dispatchEvent(new Event(...))
+// Manually triggers an event on an element
+const customEvent = new Event("myCustomEvent");
+button.addEventListener("myCustomEvent", () => {
+  console.log("Custom event triggered!");
+});
+button.dispatchEvent(customEvent);
+// Output: Logs "Custom event triggered!"
+
+// 7. element.onclick = function
+// Sets an inline event handler (overwrites previous ones)
+button.onclick = () => {
+  console.log("Inline click handler!");
+};
+// Output: Logs message on click; only one handler allowed this way
+
+// 8. event.target
+// Refers to the actual element that triggered the event
+button.addEventListener("click", (e) => {
+  console.log("Clicked element ID:", e.target.id);
+});
+// Output: Logs the ID of the clicked element (e.g., "myButton")
+
+// 9. event.currentTarget
+// Refers to the element the handler is bound to
+button.addEventListener("click", (e) => {
+  console.log("Handler bound to:", e.currentTarget.id);
+});
+// Output: Always logs the ID of #myButton (even if event bubbles)
+
+// 10. element.addEventListener(event, handler, { once: true })
+// Adds a one-time event listener (auto-removes after first call)
+button.addEventListener(
+  "click",
+  () => {
+    console.log("This runs only once");
+  },
+  { once: true }
+);
+// Output: Logs message only the first time the button is clicked
