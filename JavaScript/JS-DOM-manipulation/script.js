@@ -32,27 +32,6 @@ const parentOfTitle = title.parentNode;
 const elementsWithAttr = document.querySelectorAll("[data-id]");
 
 /****************************
- * SELCETS ATTRIBUTES
- ****************************/
-
-// Select elements with an attribute equal to a value.
-const activeButtons = document.querySelectorAll('button[data-status="active"]');
-
-// Select elements with an attribute containing a substring.
-const linksWithExample = document.querySelectorAll('a[href*="example.com"]');
-
-// Select elements with an attribute starting with a string.
-const imageThumbnails = document.querySelectorAll('img[src^="/thumbnails/"]');
-
-// Select elements with an attribute ending with a string.
-const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
-
-// Combine attribute selectors with tag/class.
-const importantActiveDivs = document.querySelectorAll(
-  'div.important[data-status="active"]'
-);
-
-/****************************
  * 2. CONTENT & TEXT CHANGES
  ****************************/
 // Set plain text
@@ -75,8 +54,65 @@ container.appendChild(newTextNode);
 // Result: Adds plain text at the end of the container
 
 /***************************
- * 3. STYLING MANIPULATION
+ * 3. CSS STYLING MANIPULATION
  ***************************/
+// 1. element.style.property
+const box = document.getElementById("box");
+box.style.backgroundColor = "blue"; // Directly sets the background color
+// Output: The background color of #box becomes blue
+
+// 2. element.classList.add()
+box.classList.add("active");
+// Output: Adds the 'active' class to #box
+
+// 3. element.classList.remove()
+box.classList.remove("active");
+// Output: Removes the 'active' class from #box
+
+// 4. element.classList.toggle()
+box.classList.toggle("hidden");
+// Output: Adds 'hidden' class if not present, removes it if already present
+
+// 5. element.classList.contains()
+const has_Class = box.classList.contains("highlight");
+console.log(has_Class);
+// Output: true or false depending on whether #box has 'highlight' class
+
+// 6. window.getComputedStyle(element)
+const styles = window.getComputedStyle(box);
+console.log(styles.width);
+// Output: e.g., "200px" — Returns the computed width of the #box element
+
+// 7. element.setAttribute('style', ...)
+box.setAttribute("style", "color: white; background-color: black;");
+// Output: Applies multiple CSS properties at once via inline style attribute
+
+// 8. element.style.setProperty()
+box.style.setProperty("font-size", "18px");
+// Output: Sets the font size of #box to 18px
+
+// 9. element.style.removeProperty()
+box.style.removeProperty("background-color");
+// Output: Removes the background color inline style from #box
+
+// 10. element.style.cssText
+box.style.cssText = "color: red; border: 1px solid black;";
+// Output: Replaces all inline styles with the new styles
+
+// 11. document.querySelectorAll(selector)
+document.querySelectorAll(".items").forEach((el) => {
+  el.style.margin = "10px";
+});
+// Output: Sets margin to 10px for all elements with class 'items'
+
+// 12. element.className
+console.log(box.className);
+// Output: Returns all class names as a single string, e.g., "box active"
+
+// 13. element.className = 'new-class'
+box.className = "new-box";
+// Output: Replaces all existing classes with 'new-box'
+
 // Change text color
 items[0].style.color = "blue";
 // Result: First list item becomes blue
