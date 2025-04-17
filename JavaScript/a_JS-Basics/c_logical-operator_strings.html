@@ -81,25 +81,77 @@
       console.log("parseFloat:", parseFloat(stringNumber)); // Output: parseFloat: 52.442
       console.log("isNaN:", isNaN(parseFloat(stringNumber))); // Output: isNaN: false
 
+      // Define a sample string to demonstrate string manipulation methods
       const exampleString =
-        'Hi there this is "Prem Acharya", and I live in Sydne!';
-      console.log("Original String:", exampleString); // Output: Original String: Hi there this is "Prem Acharya", and I live in Sydne!
-      console.log("Length:", exampleString.length); // Output: Length: 52
-      console.log("toLowerCase:", exampleString.toLowerCase()); // Output: toLowerCase: hi there this is "prem acharya", and i live in sydne!
-      console.log("toUpperCase:", exampleString.toUpperCase()); // Output: toUpperCase: HI THERE THIS IS "PREM ACHARYA", AND I LIVE IN SYDNE!
-      console.log("charAt[20]:", exampleString[20]); // Output: charAt[20]: A
-      console.log("charAt(20):", exampleString.charAt(20)); // Output: charAt(20): A
-      console.log("indexOf('e'):", exampleString.indexOf("e")); // Output: indexOf('e'): 4
-      console.log("lastIndexOf('there'):", exampleString.lastIndexOf("there")); // Output: lastIndexOf('there'): 3, the last "there"(which is also first in this case) starts at index 3
-      console.log("replace:", exampleString.replace("Prem", "Sam")); // Output: replace: Hi there this is "Sam Acharya", and I live in Sydne!
-      console.log("replaceAll:", exampleString.replaceAll("i", "u")); // Output: replaceAll: Hu there thus us "Prem Acharya", and U luve un Sydne!
-      console.log("slice(3, 5):", exampleString.slice(3, 5)); // Output: slice(3, 5): th
-      console.log("slice(3):", exampleString.slice(3)); // Output: slice(3): there this is "Prem Acharya", and I live in Sydne!
-      console.log("slice(-3, -2):", exampleString.slice(-3, -2)); // Output: slice(-3, -2): d
-      console.log("substring(3, 5):", exampleString.substring(3, 5)); // Output: substring(3, 5): th
-      console.log("includes('Prem'):", exampleString.includes("Prem")); // Output: includes('Prem'): true
-      console.log("search('Prsdem'):", exampleString.search("Prsdem")); // Output: search('Prsdem'): -1 (because "Prsdem" is not found in the string)
-      console.log("search('Prem'):", exampleString.search("Prem")); // Output: search('Prsdem'): 17 (which is the index of the first character of "Prem")
+        'Hi there this is "Roshan Paudel", and I live in Sydney!';
+
+      // Log the original string
+      console.log("Original String:", exampleString);
+      // Output: Hi there this is "Roshan Paudel", and I live in Sydney!
+
+      // .length → returns the total number of characters in the string (including spaces and punctuation)
+      console.log("Length:", exampleString.length);
+      // Output: 59
+
+      // .toLowerCase() → converts all characters in the string to lowercase
+      console.log("toLowerCase:", exampleString.toLowerCase());
+      // Output: hi there this is "roshan paudel", and i live in sydney!
+
+      // .toUpperCase() → converts all characters in the string to uppercase
+      console.log("toUpperCase:", exampleString.toUpperCase());
+      // Output: HI THERE THIS IS "ROSHAN PAUDEL", AND I LIVE IN SYDNEY!
+
+      // Bracket notation [index] → accesses the character at a specific index in the string
+      console.log("charAt[20]:", exampleString[20]);
+      // Output: 'R' - character at index 20
+
+      // .charAt(index) → returns the character at the given index (same as above but a method)
+      console.log("charAt(20):", exampleString.charAt(20));
+      // Output: 'R'
+
+      // .indexOf(substring) → returns the index of the first occurrence of the given substring
+      console.log("indexOf('e'):", exampleString.indexOf("e"));
+      // Output: 4
+
+      // .lastIndexOf(substring) → returns the index of the last occurrence of the given substring
+      console.log("lastIndexOf('there'):", exampleString.lastIndexOf("there"));
+      // Output: 3
+
+      // .replace(old, new) → replaces the first occurrence of "old" with "new"
+      console.log("replace:", exampleString.replace("Roshan", "Sam"));
+      // Output: Hi there this is "Sam Paudel", and I live in Sydney!
+
+      // .replaceAll(old, new) → replaces all occurrences of "old" with "new"
+      console.log("replaceAll:", exampleString.replaceAll("i", "u"));
+      // Output: Hu there thus us "Rushan Paudel", and U luve un Sydney!
+
+      // .slice(start, end) → extracts a section of the string from start to end (excluding end)
+      console.log("slice(3, 5):", exampleString.slice(3, 5));
+      // Output: 'th'
+
+      // .slice(start) → extracts from the start index to the end of the string
+      console.log("slice(3):", exampleString.slice(3));
+      // Output: 'there this is "Roshan Paudel", and I live in Sydney!'
+
+      // .slice(-3, -2) → extracts characters counting backwards from the end (negative indices)
+      console.log("slice(-3, -2):", exampleString.slice(-3, -2));
+      // Output: 'e'
+
+      // .substring(start, end) → similar to slice, but does not support negative indices
+      console.log("substring(3, 5):", exampleString.substring(3, 5));
+      // Output: 'th'
+
+      // .includes(substring) → returns true if the substring is found in the string
+      console.log("includes('Roshan'):", exampleString.includes("Roshan"));
+      // Output: true
+
+      // .search(value) → searches for a string or regex pattern and returns the first match index or -1
+      // Useful for regular expressions too
+      console.log("search('Roshan'):", exampleString.search("Roshan"));
+      // Output: 20 - because "Roshan" starts at index 20
+
+      console.log("search('Prsdem'):", exampleString.search("Prsdem"));
+      // Output: -1 - "Prsdem" is not found in the string
     </script>
   </body>
 </html>
