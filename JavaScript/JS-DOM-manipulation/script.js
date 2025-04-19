@@ -48,6 +48,10 @@ const innerTextExample = document.getElementById("text-example");
 innerTextExample.innerText = "This is innerText and respects CSS visibility";
 // Result: If the element is hidden with display:none, this won't be visible or accessible
 
+// textContent gets all text, including hidden content, ignoring styles
+let textContentExample = div.querySelector("#para1").textContent;
+// Output: "This is a test."
+
 // Append text node
 const newTextNode = document.createTextNode("This is a text node");
 container.appendChild(newTextNode);

@@ -33,6 +33,7 @@
 
       // ageValue < 50 && console.log("Welcome");
 
+      ageValue = 19;
       if ((ageValue >= 18 && ageValue < 50) || vipStatus === true) {
         console.log("Welcome to the coding party!"); // Output: Welcome to the coding party!
       } else {
@@ -71,6 +72,32 @@
       ageTernaryValue < 50 ? console.log("welcom") : console.log("Go home"); // Output: welcom
 
       // SECTION: Numbers and Strings
+
+      // Unary downcast
+      // Convert a numeric string to a number
+      const str1 = "42";
+      const num1 = +str1;
+      console.log(num1); // 42
+
+      // Convert a floating-point string to a number
+      const str2 = "3.14";
+      const num2 = +str2;
+      console.log(num2); // 3.14
+
+      // Non-numeric string results in NaN
+      const str3 = "hello";
+      const num3 = +str3;
+      console.log(num3); // NaN
+
+      // String with whitespace is trimmed and converted
+      const str4 = "  56  ";
+      const num4 = +str4;
+      console.log(num4); // 56
+
+      // Empty string is converted to 0
+      const str5 = "";
+      const num5 = +str5;
+      console.log(num5); // 0
 
       // Numbers and string manipulation.
       const largeNumber = 30580984843456;
